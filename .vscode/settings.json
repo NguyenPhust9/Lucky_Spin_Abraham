@@ -1,0 +1,16 @@
+{
+  // @tailwind / @apply / @layer là at-rule của Tailwind, không có trong chuẩn CSS
+  // -> tắt cảnh báo "Unknown at rule" của CSS language service tích hợp sẵn
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+
+  // output.css là file build, không sửa tay
+  "files.readonlyInclude": {
+    "output.css": true
+  },
+  "search.exclude": {
+    "output.css": true,
+    "node_modules": true
+  }
+}
