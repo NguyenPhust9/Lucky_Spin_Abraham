@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abraham Bike - Bứt Phá Mùa Hè, Quay Là Trúng</title>
-    <meta name="description" content="Xe đạp thể thao Abraham - Ưu đãi hè 2026: giảm đến 20%, tặng bộ phụ kiện phượt 500.000đ và vòng quay may mắn trúng thưởng 100%. Bảo hành khung 5 năm, miễn phí vận chuyển toàn quốc.">
+    <title>Abraham Bike — Sẵn Sàng Đến Trường, Trúng Thưởng 100%</title>
+    <meta name="description" content="Chương trình Sẵn sàng đến trường 2026 của Abraham Bike: mua xe đạp học sinh size 12–26 inch tại đại lý toàn quốc, quét mã QR tại quầy và quay thưởng ngay. 100% khách tham gia đều có quà. Từ 21/08 đến 15/09/2026.">
+
     <!-- Font Awesome Icons - phải nạp TRƯỚC Tailwind, nếu không .fa-* sẽ đè lên
          các utility display của Tailwind (hidden, flex, inline...) trên thẻ <i> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -14,17 +15,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
 
-   <style>
+<style>
     /* =========================================================
-       ABRAHAM HERO
+       HERO
     ========================================================== */
     .abraham-hero {
         background:
-            radial-gradient(circle at 8% 15%, rgba(241, 200, 90, 0.20), transparent 22%),
-            radial-gradient(circle at 78% 20%, rgba(10, 42, 92, 0.10), transparent 28%),
-            radial-gradient(circle at 95% 90%, rgba(219, 165, 55, 0.16), transparent 24%),
-            linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+            radial-gradient(circle at 10% 18%, rgba(96,165,250,.24), transparent 24%),
+            radial-gradient(circle at 86% 16%, rgba(251,113,133,.18), transparent 26%),
+            radial-gradient(circle at 70% 92%, rgba(251,191,36,.13), transparent 22%),
+            linear-gradient(135deg, #ffffff 0%, #f4f9ff 48%, #fff5f6 100%);
     }
 
     .abraham-grid-bg {
@@ -37,135 +39,6 @@
     }
 
     .hero-gold-text {
-        background: linear-gradient(
-            90deg,
-            #075BB5 0%,
-            #0B74DE 35%,
-            #67B7FF 65%,
-            #075BB5 100%
-        );
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-    }
-
-    .hero-badge {
-        box-shadow:
-            0 8px 30px rgba(219, 165, 55, 0.14),
-            inset 0 0 0 1px rgba(219, 165, 55, 0.15);
-    }
-
-    .hero-offer-card {
-        box-shadow:
-            0 20px 60px rgba(6, 28, 68, 0.08),
-            0 5px 16px rgba(6, 28, 68, 0.04);
-    }
-
-    /* =========================================================
-       WHEEL
-    ========================================================== */
-
-    .wheel-shell {
-        filter:
-            drop-shadow(0 28px 40px rgba(6, 28, 68, 0.16))
-            drop-shadow(0 5px 12px rgba(6, 28, 68, 0.08));
-    }
-
-    .wheel-rotor {
-        transform-origin: 200px 200px;
-        transform-box: view-box;
-        transition:
-            transform 5s cubic-bezier(0.12, 0.72, 0.12, 1);
-    }
-
-    /*
-       QUAN TRỌNG:
-       Nhãn quay ngược chiều với bánh xe.
-       Vì vậy vị trí prize vẫn chạy theo bánh xe,
-       nhưng chữ luôn nằm đúng chiều để đọc.
-    */
-    .wheel-label-counter {
-        transform-origin: 0 0;
-        transform-box: view-box;
-        transition:
-            transform 5s cubic-bezier(0.12, 0.72, 0.12, 1);
-    }
-
-    .wheel-host-glow {
-        position: relative;
-    }
-
-    .wheel-host-glow::before {
-        content: "";
-        position: absolute;
-        width: 82%;
-        height: 82%;
-        left: 9%;
-        top: 13%;
-        border-radius: 999px;
-        background: radial-gradient(
-            circle,
-            rgba(241, 200, 90, 0.26),
-            rgba(219, 165, 55, 0.08) 50%,
-            transparent 72%
-        );
-        filter: blur(30px);
-        pointer-events: none;
-    }
-
-    .btn-abraham {
-        box-shadow:
-            0 12px 30px rgba(219, 165, 55, 0.25),
-            0 3px 9px rgba(184, 115, 37, 0.20);
-    }
-
-    .btn-abraham:hover {
-        box-shadow:
-            0 16px 40px rgba(219, 165, 55, 0.34),
-            0 5px 12px rgba(184, 115, 37, 0.24);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .wheel-rotor,
-        .wheel-label-counter {
-            transition-duration: 0.4s;
-        }
-
-        .animate-bounce,
-        .animate-pulse,
-        .btn-pulse {
-            animation: none !important;
-        }
-    }
-
-
-    /* =========================================================
-       ABRAHAM RED + BLUE LIGHT THEME 2026
-       Blue + Red/Coral + Sky + Yellow + Mint, ưu tiên nền sáng
-    ========================================================== */
-    :root {
-        --ab-navy: #2563EB;
-        --ab-navy-2: #3B82F6;
-        --ab-blue: #2563EB;
-        --ab-blue-2: #60A5FA;
-        --ab-sky: #93C5FD;
-        --ab-ice: #EFF6FF;
-        --ab-ice-2: #FFF9FA;
-    }
-
-    body {
-        background: var(--ab-ice-2);
-    }
-
-    .abraham-hero {
-        background:
-            radial-gradient(circle at 9% 16%, rgba(103, 183, 255, 0.28), transparent 24%),
-            radial-gradient(circle at 78% 18%, rgba(11, 116, 222, 0.15), transparent 30%),
-            radial-gradient(circle at 95% 88%, rgba(84, 184, 255, 0.18), transparent 26%),
-            linear-gradient(135deg, #ffffff 0%, #f3f9ff 52%, #eaf5ff 100%);
-    }
-
-    .hero-gold-text {
         background: linear-gradient(90deg, #2563EB 0%, #60A5FA 32%, #FB7185 68%, #EF4444 100%);
         -webkit-background-clip: text;
         background-clip: text;
@@ -173,856 +46,60 @@
     }
 
     .hero-badge {
-        box-shadow: 0 8px 30px rgba(11, 116, 222, 0.12), inset 0 0 0 1px rgba(103, 183, 255, 0.18);
-    }
-
-    .hero-offer-card {
-        border-color: rgba(148, 197, 244, 0.42);
-        box-shadow: 0 20px 60px rgba(6, 28, 68, 0.08), 0 5px 16px rgba(11, 116, 222, 0.05);
-    }
-
-    .wheel-host-glow::before {
-        background: radial-gradient(circle, rgba(103, 183, 255, 0.34), rgba(11, 116, 222, 0.10) 50%, transparent 72%);
-    }
-
-    .btn-abraham {
-        box-shadow: 0 12px 30px rgba(11, 116, 222, 0.26), 0 3px 9px rgba(7, 91, 181, 0.18);
-    }
-
-    .btn-abraham:hover {
-        box-shadow: 0 16px 40px rgba(11, 116, 222, 0.34), 0 5px 12px rgba(7, 91, 181, 0.22);
-    }
-
-    ::selection {
-        background: #F43F5E;
-        color: #fff;
-    }
-
-    /* ---------------------------------------------------------
-       LIGHT MIX PALETTE
-       Blue  : #2563EB / #60A5FA / #93C5FD
-       Coral : #F43F5E / #FB7185 / #EF4444
-       Accent: #FBBF24 / #34D399 / #A78BFA
-       Surface: white + very pale blue/rose only
-    ---------------------------------------------------------- */
-    .abraham-hero {
-        background:
-            radial-gradient(circle at 10% 18%, rgba(96,165,250,.24), transparent 24%),
-            radial-gradient(circle at 86% 16%, rgba(251,113,133,.18), transparent 26%),
-            radial-gradient(circle at 70% 92%, rgba(251,191,36,.13), transparent 22%),
-            linear-gradient(135deg, #ffffff 0%, #f4f9ff 48%, #fff5f6 100%);
+        box-shadow: 0 8px 30px rgba(11, 116, 222, 0.12),
+                    inset 0 0 0 1px rgba(103, 183, 255, 0.18);
     }
 
     .hero-offer-card {
         background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(239,246,255,.9) 55%, rgba(255,241,242,.86));
         border-color: rgba(147,197,253,.55);
+        box-shadow: 0 20px 60px rgba(6, 28, 68, 0.08), 0 5px 16px rgba(11, 116, 222, 0.05);
     }
 
+    /* =========================================================
+       VÒNG QUAY
+    ========================================================== */
+    .wheel-shell {
+        filter: drop-shadow(0 28px 40px rgba(6, 28, 68, 0.16))
+                drop-shadow(0 5px 12px rgba(6, 28, 68, 0.08));
+    }
+
+    .wheel-rotor {
+        transform-origin: 200px 200px;
+        transform-box: view-box;
+        transition: transform 5s cubic-bezier(0.12, 0.72, 0.12, 1);
+    }
+
+    /* Nhãn quay ngược chiều bánh xe để chữ luôn đứng đúng chiều đọc */
+    .wheel-label-counter {
+        transform-origin: 0 0;
+        transform-box: view-box;
+        transition: transform 5s cubic-bezier(0.12, 0.72, 0.12, 1);
+    }
+
+    .wheel-host-glow { position: relative; }
+
     .wheel-host-glow::before {
-        background: radial-gradient(circle, rgba(96,165,250,.25), rgba(251,113,133,.16) 48%, rgba(251,191,36,.08) 62%, transparent 74%);
+        content: "";
+        position: absolute;
+        width: 82%; height: 82%; left: 9%; top: 13%;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(96,165,250,.25), rgba(251,113,133,.16) 48%,
+                    rgba(251,191,36,.08) 62%, transparent 74%);
+        filter: blur(30px);
+        pointer-events: none;
     }
 
     .btn-abraham {
         box-shadow: 0 12px 30px rgba(37,99,235,.18), 0 5px 16px rgba(244,63,94,.14);
     }
-
     .btn-abraham:hover {
         box-shadow: 0 16px 38px rgba(37,99,235,.20), 0 7px 18px rgba(244,63,94,.18);
     }
 
-</style>
-</head>
-<body class="font-sans bg-slate-50 text-slate-800 antialiased selection:bg-brand-blue selection:text-white">
-
-    <!-- Top Announcement Bar -->
-    <div class="bg-gradient-to-r from-[#2563EB] via-[#60A5FA] to-[#F43F5E] text-white text-[11px] md:text-sm font-bold py-2 px-4 text-center tracking-wide uppercase shadow-md flex items-center justify-center gap-2">
-        <i class="fa-solid fa-fire animate-bounce text-sky-100 hidden sm:inline"></i>
-        <span>Ưu Đãi Độc Quyền Hè 2026: Giảm Đến 20% + Tặng Bộ Phụ Kiện Trị Giá 500K</span>
-        <i class="fa-solid fa-fire animate-bounce text-sky-100 hidden sm:inline"></i>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-            <!-- Logo -->
-            <a href="#" class="flex items-center gap-2 group shrink-0">
-                <div class="bg-brand-blue text-white px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg font-black text-base sm:text-xl tracking-wider whitespace-nowrap group-hover:bg-[#F43F5E] transition">
-                    ABRAHAM
-                </div>
-                <span class="font-bold text-base sm:text-lg tracking-tight text-slate-900">BIKE</span>
-            </a>
-
-            <!-- Menu Links -->
-            <div class="hidden xl:flex items-center gap-6 font-semibold text-sm text-slate-700 whitespace-nowrap">
-                <a href="#bo-suu-tap" class="hover:text-brand-blue transition">Bộ Sưu Tập</a>
-                <a href="#qua-tang" class="hover:text-brand-blue transition">Phụ Kiện</a>
-                <a href="#vong-quay" class="text-brand-blue hover:text-[#F43F5E] transition">Ưu Đãi Hè 2026</a>
-                <a href="#ly-do-chon" class="hover:text-brand-blue transition">Vì Sao Chọn Abraham</a>
-                <a href="#danh-gia" class="hover:text-brand-blue transition">Đánh Giá</a>
-            </div>
-
-            <!-- Header Actions -->
-            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
-                <button type="button" aria-label="Tìm kiếm sản phẩm"
-                        class="hidden md:flex w-10 h-10 rounded-full text-slate-600 hover:bg-slate-100 hover:text-brand-blue transition items-center justify-center">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
-
-                <button type="button" aria-label="Giỏ hàng"
-                        class="relative hidden md:flex w-10 h-10 rounded-full text-slate-600 hover:bg-slate-100 hover:text-brand-blue transition items-center justify-center">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <span class="absolute -top-0.5 -right-0.5 bg-brand-blue text-white text-[10px] font-black w-4 h-4 rounded-full flex items-center justify-center">0</span>
-                </button>
-
-                <a href="#dat-hang" class="hidden sm:inline-block bg-brand-blue hover:bg-[#F43F5E] text-white px-5 py-2.5 rounded-full font-extrabold text-xs uppercase tracking-wider whitespace-nowrap shadow-lg hover:shadow-blue-500/30 transition-all duration-300 transform hover:-translate-y-0.5">
-                    Mua Ngay
-                </a>
-
-                <!-- Mobile Menu Toggle -->
-                <button type="button" id="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Mở menu"
-                        class="xl:hidden w-11 h-11 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 transition flex items-center justify-center text-xl">
-                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden xl:hidden border-t border-slate-100 bg-white">
-            <div class="px-4 sm:px-6 py-4 flex flex-col font-semibold text-slate-700">
-                <a href="#bo-suu-tap" class="py-3 border-b border-slate-100 hover:text-brand-blue transition">Bộ Sưu Tập</a>
-                <a href="#qua-tang" class="py-3 border-b border-slate-100 hover:text-brand-blue transition">Phụ Kiện</a>
-                <a href="#vong-quay" class="py-3 border-b border-slate-100 text-brand-blue transition">Ưu Đãi Hè 2026</a>
-                <a href="#ly-do-chon" class="py-3 border-b border-slate-100 hover:text-brand-blue transition">Vì Sao Chọn Abraham</a>
-                <a href="#danh-gia" class="py-3 border-b border-slate-100 hover:text-brand-blue transition">Đánh Giá</a>
-                <a href="#dat-hang" class="mt-4 sm:hidden bg-brand-blue hover:bg-[#F43F5E] text-white text-center px-5 py-3 rounded-xl font-extrabold text-xs uppercase tracking-wider transition">
-                    Mua Ngay
-                </a>
-            </div>
-        </div>
-    </nav>
-
-  <!-- =========================================================
-     SECTION 1: HERO + VÒNG QUAY - LIGHT PREMIUM VERSION
-========================================================== -->
-<section id="khuyen-mai"
-    class="abraham-hero relative bg-white text-slate-900 overflow-hidden py-12 lg:py-16 border-b border-sky-100">
-
-    <!-- Pattern nền -->
-    <div class="abraham-grid-bg absolute inset-0 pointer-events-none"></div>
-
-    <!-- Decoration -->
-    <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full
-                border-[60px] border-sky-300/20 pointer-events-none"></div>
-
-    <div class="absolute -right-28 top-20 w-96 h-96 rounded-full
-                bg-blue-100/40 blur-3xl pointer-events-none"></div>
-
-    <!-- Thanh trang trí xanh -->
-    <div class="absolute top-0 left-0 right-0 h-1
-                bg-gradient-to-r from-[#60A5FA] via-[#F43F5E] to-[#FBBF24]">
-    </div>
-
-
-    <div class="relative z-10 max-w-[1400px] mx-auto
-                px-4 sm:px-6 lg:px-8 py-12 lg:py-16 xl:py-20">
-
-        <div class="grid lg:grid-cols-12 gap-10 xl:gap-12 items-center">
-
-            <!-- =================================================
-                 CỘT TRÁI
-            ================================================== -->
-            <div class="lg:col-span-5 space-y-6 text-center lg:text-left">
-
-                <!-- Badge -->
-                <div class="hero-badge inline-flex items-center gap-2
-                            bg-white border border-sky-300/70
-                            rounded-full px-4 py-2">
-
-                    <span class="flex items-center justify-center
-                                 w-6 h-6 rounded-full
-                                 bg-[#F43F5E] text-white
-                                 text-[10px]">
-                        <i class="fa-solid fa-bolt"></i>
-                    </span>
-
-                    <span class="text-[#2563EB] font-black
-                                 text-[11px] sm:text-xs
-                                 uppercase tracking-[0.16em]">
-                        Summer Campaign 2026
-                    </span>
-                </div>
-
-
-                <!-- Headline -->
-                <div class="space-y-2">
-
-                    <p class="text-[#2563EB]
-                              font-extrabold
-                              uppercase
-                              tracking-[0.24em]
-                              text-xs sm:text-sm">
-                        Mua xe Abraham
-                    </p>
-
-                    <h1 class="font-black tracking-[-0.045em]
-                               leading-[0.95]
-                               text-[#1D4ED8]
-                               text-[3.1rem]
-                               sm:text-6xl
-                               lg:text-[3.7rem]
-                               xl:text-[4.4rem]">
-
-                        BỨT PHÁ
-                        <br>
-
-                        <span class="hero-gold-text">
-                            MÙA HÈ
-                        </span>
-
-                    </h1>
-
-                    <div class="flex items-center justify-center lg:justify-start gap-3 pt-2">
-
-                        <span class="h-[3px] w-9 bg-[#F43F5E] rounded-full"></span>
-
-                        <span class="text-[#2563EB]
-                                     font-black
-                                     uppercase
-                                     tracking-[0.14em]
-                                     text-lg sm:text-xl">
-                            Quay là trúng
-                        </span>
-
-                    </div>
-                </div>
-
-
-                <!-- Description -->
-                <p class="text-slate-600
-                          text-sm sm:text-base
-                          leading-relaxed
-                          max-w-lg mx-auto lg:mx-0">
-
-                    Sở hữu xe đạp Abraham trong chương trình hè 2026,
-                    nhận ngay lượt quay may mắn với những phần quà
-                    dành riêng cho khách hàng Abraham Bike.
-
-                </p>
-
-
-                <!-- Promo Box -->
-                <div class="hero-offer-card
-                            max-w-lg mx-auto lg:mx-0
-                            bg-white
-                            border border-slate-200
-                            rounded-2xl
-                            p-4 sm:p-5">
-
-                    <div class="grid grid-cols-2 divide-x divide-slate-200">
-
-                        <div class="px-3 text-center lg:text-left">
-
-                            <p class="text-[10px]
-                                      font-extrabold
-                                      uppercase
-                                      tracking-widest
-                                      text-slate-400">
-                                Ưu đãi xe
-                            </p>
-
-                            <p class="mt-1
-                                      text-xl sm:text-2xl
-                                      font-black
-                                      text-[#F43F5E]">
-                                GIẢM ĐẾN 20%
-                            </p>
-
-                        </div>
-
-
-                        <div class="px-3 sm:px-5 text-center lg:text-left">
-
-                            <p class="text-[10px]
-                                      font-extrabold
-                                      uppercase
-                                      tracking-widest
-                                      text-slate-400">
-                                Quà tặng
-                            </p>
-
-                            <p class="mt-1
-                                      text-xl sm:text-2xl
-                                      font-black
-                                      text-[#2563EB]">
-                                100% CÓ QUÀ
-                            </p>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- CTA -->
-                <div class="flex flex-col sm:flex-row
-                            justify-center lg:justify-start
-                            gap-3">
-
-                    <a href="#bo-suu-tap"
-                       class="btn-abraham
-                              bg-gradient-to-r
-                              from-[#2563EB] to-[#F43F5E]
-                              hover:from-[#60A5FA]
-                              hover:to-[#FB7185]
-                              text-white
-                              rounded-xl
-                              px-7 py-4
-                              font-black
-                              uppercase
-                              tracking-wider
-                              text-xs
-                              transition-all
-                              duration-300
-                              flex items-center
-                              justify-center
-                              gap-2.5
-                              hover:-translate-y-0.5">
-
-                        <i class="fa-solid fa-bicycle"></i>
-
-                        <span>Chọn xe ngay</span>
-
-                    </a>
-
-
-                    <a href="#vong-quay"
-                       class="bg-white
-                              border-2 border-[#F43F5E]
-                              hover:bg-[#FFF1F2]
-                              hover:text-[#E11D48]
-                              text-[#2563EB]
-                              rounded-xl
-                              px-7 py-4
-                              font-black
-                              uppercase
-                              tracking-wider
-                              text-xs
-                              transition-all
-                              flex items-center
-                              justify-center
-                              gap-2.5">
-
-                        <i class="fa-solid fa-gift text-[#F43F5E]"></i>
-
-                        <span>Xem phần thưởng</span>
-
-                    </a>
-
-                </div>
-
-
-                <!-- USPs -->
-                <div class="grid grid-cols-2 gap-x-5 gap-y-4 pt-2">
-
-                    <div class="flex items-center gap-3 text-left">
-
-                        <span class="w-10 h-10
-                                     shrink-0
-                                     rounded-xl
-                                     bg-blue-50
-                                     text-[#2563EB]
-                                     flex items-center
-                                     justify-center">
-                            <i class="fa-solid fa-shield-halved"></i>
-                        </span>
-
-                        <div>
-                            <p class="text-xs font-extrabold text-slate-800">
-                                Bảo hành 5 năm
-                            </p>
-
-                            <p class="text-[10px] text-slate-400">
-                                Khung sườn chính hãng
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="flex items-center gap-3 text-left">
-
-                        <span class="w-10 h-10
-                                     shrink-0
-                                     rounded-xl
-                                     bg-rose-50
-                                     text-[#F43F5E]
-                                     flex items-center
-                                     justify-center">
-                            <i class="fa-solid fa-truck-fast"></i>
-                        </span>
-
-                        <div>
-                            <p class="text-xs font-extrabold text-slate-800">
-                                Giao hàng toàn quốc
-                            </p>
-
-                            <p class="text-[10px] text-slate-400">
-                                Hỗ trợ tận nơi
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="flex items-center gap-3 text-left">
-
-                        <span class="w-10 h-10
-                                     shrink-0
-                                     rounded-xl
-                                     bg-blue-50
-                                     text-[#2563EB]
-                                     flex items-center
-                                     justify-center">
-                            <i class="fa-solid fa-credit-card"></i>
-                        </span>
-
-                        <div>
-                            <p class="text-xs font-extrabold text-slate-800">
-                                Trả góp 0%
-                            </p>
-
-                            <p class="text-[10px] text-slate-400">
-                                Thanh toán linh hoạt
-                            </p>
-                        </div>
-
-                    </div>
-
-
-                    <div class="flex items-center gap-3 text-left">
-
-                        <span class="w-10 h-10
-                                     shrink-0
-                                     rounded-xl
-                                     bg-rose-50
-                                     text-[#F43F5E]
-                                     flex items-center
-                                     justify-center">
-                            <i class="fa-solid fa-gift"></i>
-                        </span>
-
-                        <div>
-                            <p class="text-xs font-extrabold text-slate-800">
-                                Quà tặng hấp dẫn
-                            </p>
-
-                            <p class="text-[10px] text-slate-400">
-                                Dành riêng hè 2026
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 CỘT GIỮA - WHEEL
-            ================================================== -->
-            <div class="lg:col-span-5 flex flex-col items-center">
-
-                <div class="relative w-full max-w-[520px]">
-
-                    <!-- Label -->
-                    <div class="absolute
-                                top-3
-                                left-1/2
-                                -translate-x-1/2
-                                z-30
-                                whitespace-nowrap">
-
-                        <span class="bg-gradient-to-r from-[#2563EB] to-[#F43F5E]
-                                     text-white
-                                     text-[10px]
-                                     sm:text-xs
-                                     font-black
-                                     uppercase
-                                     tracking-[0.16em]
-                                     px-4 py-2
-                                     rounded-full
-                                     shadow-xl">
-
-                            <i class="fa-solid fa-gift text-[#FDE68A] mr-1"></i>
-
-                            Thử vận may của bạn
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="wheel-host-glow pt-10">
-
-                        <div data-wheel
-                             data-wheel-id="hero"
-                             class="w-full relative z-10">
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Result -->
-                <div class="mt-4
-                            min-h-[54px]
-                            flex items-center
-                            justify-center">
-
-                    <p data-wheel-result="hero"
-                       role="status"
-                       aria-live="polite"
-                       class="text-center
-                              text-sm sm:text-base
-                              font-black
-                              text-[#2563EB]">
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =================================================
-                 CỘT PHẢI - PRIZE INFO
-            ================================================== -->
-            <div class="hidden xl:block xl:col-span-2">
-
-                <div class="space-y-3">
-
-                    <p class="text-[10px]
-                              uppercase
-                              font-black
-                              tracking-[0.2em]
-                              text-slate-400">
-                        Phần thưởng
-                    </p>
-
-
-                    <!-- Card 1 -->
-                    <div class="bg-gradient-to-br from-[#2563EB] via-[#3B82F6] to-[#F43F5E]
-                                text-white
-                                rounded-2xl
-                                p-4
-                                shadow-xl">
-
-                        <div class="w-9 h-9
-                                    mb-3
-                                    rounded-xl
-                                    bg-[#FDE68A]
-                                    text-[#2563EB]
-                                    flex items-center
-                                    justify-center">
-
-                            <i class="fa-solid fa-gift"></i>
-
-                        </div>
-
-                        <p class="font-black text-sm">
-                            Bộ phụ kiện
-                        </p>
-
-                        <p class="text-[#FFF7CC]
-                                  text-xl
-                                  font-black">
-                            500K
-                        </p>
-
-                    </div>
-
-
-                    <!-- Card 2 -->
-                    <div class="bg-white
-                                border border-slate-200
-                                rounded-2xl
-                                p-4">
-
-                        <div class="w-9 h-9
-                                    mb-3
-                                    rounded-xl
-                                    bg-sky-50
-                                    text-[#0B74DE]
-                                    flex items-center
-                                    justify-center">
-
-                            <i class="fa-solid fa-percent"></i>
-
-                        </div>
-
-                        <p class="text-xs font-bold text-slate-500">
-                            Voucher
-                        </p>
-
-                        <p class="text-[#2563EB]
-                                  text-xl
-                                  font-black">
-                            10%
-                        </p>
-
-                    </div>
-
-
-                    <!-- Card 3 -->
-                    <div class="bg-white
-                                border border-slate-200
-                                rounded-2xl
-                                p-4">
-
-                        <div class="w-9 h-9
-                                    mb-3
-                                    rounded-xl
-                                    bg-blue-50
-                                    text-[#2563EB]
-                                    flex items-center
-                                    justify-center">
-
-                            <i class="fa-solid fa-helmet-safety"></i>
-
-                        </div>
-
-                        <p class="text-xs font-bold text-slate-500">
-                            Và nhiều
-                        </p>
-
-                        <p class="text-[#2563EB]
-                                  text-base
-                                  font-black">
-                            QUÀ KHÁC
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-</section>
-
-   <!--
-  THAY THẾ toàn bộ <section id="vong-quay"> cũ bằng đoạn này.
-  Nhớ đổi ngày kết thúc ở biến END_DATE trong script cuối file.
--->
-
-<!-- SECTION 2: THỂ LỆ & LƯỢT QUAY -->
-<section id="vong-quay" class="py-16 lg:py-20 bg-gradient-to-br from-[#EFF6FF] via-white to-[#FFF1F2]">
-    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- Tiêu đề + đếm ngược -->
-        <div class="grid lg:grid-cols-12 gap-8 items-center mb-12">
-            <div class="lg:col-span-7 space-y-3">
-                <span class="inline-flex items-center gap-2 text-brand-blue font-extrabold text-[11px] uppercase tracking-widest border border-brand-blue/30 bg-white px-3 py-1.5 rounded-full">
-                    <i class="fa-solid fa-circle-info text-[9px]"></i> Thể Lệ Chương Trình
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-black text-brand-blue tracking-tight leading-tight">
-                    NHẬN LƯỢT QUAY BẰNG CÁCH NÀO?
-                </h2>
-                <p class="text-slate-600 text-sm font-medium max-w-xl">
-                    Mỗi đơn hàng thành công đều được cộng lượt quay tự động. Đơn càng lớn, số lượt càng nhiều.
-                </p>
-            </div>
-
-            <!-- Đồng hồ đếm ngược -->
-            <div class="lg:col-span-5">
-                <div class="bg-white rounded-2xl p-5 text-slate-800 shadow-xl border border-blue-100">
-                    <p class="text-[11px] font-extrabold uppercase tracking-widest text-[#F43F5E] text-center mb-3">
-                        <i class="fa-solid fa-hourglass-half"></i> Chương trình kết thúc sau
-                    </p>
-                    <div id="countdown" class="grid grid-cols-4 gap-2 text-center">
-                        <div class="bg-[#EFF6FF] rounded-xl py-3 border border-blue-100">
-                            <div data-cd="days" class="text-2xl font-black tabular-nums">--</div>
-                            <div class="text-[10px] font-semibold text-slate-500 uppercase">Ngày</div>
-                        </div>
-                        <div class="bg-[#EFF6FF] rounded-xl py-3 border border-blue-100">
-                            <div data-cd="hours" class="text-2xl font-black tabular-nums">--</div>
-                            <div class="text-[10px] font-semibold text-slate-500 uppercase">Giờ</div>
-                        </div>
-                        <div class="bg-[#EFF6FF] rounded-xl py-3 border border-blue-100">
-                            <div data-cd="minutes" class="text-2xl font-black tabular-nums">--</div>
-                            <div class="text-[10px] font-semibold text-slate-500 uppercase">Phút</div>
-                        </div>
-                        <div class="bg-[#EFF6FF] rounded-xl py-3 border border-blue-100">
-                            <div data-cd="seconds" class="text-2xl font-black tabular-nums text-[#F43F5E]">--</div>
-                            <div class="text-[10px] font-semibold text-slate-500 uppercase">Giây</div>
-                        </div>
-                    </div>
-                    <p class="text-[11px] text-slate-500 text-center mt-3 font-medium">
-                        Áp dụng đến 23:59 ngày 30/09/2026 hoặc đến khi hết quà tặng.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="grid lg:grid-cols-12 gap-8 items-start">
-
-            <!-- 3 bước, dạng dòng thời gian ngang -->
-            <div class="lg:col-span-7">
-                <div class="relative grid sm:grid-cols-3 gap-5">
-                    <!-- Đường nối giữa các bước -->
-                    <div class="hidden sm:block absolute top-6 left-[16%] right-[16%] h-0.5 bg-brand-blue/20" aria-hidden="true"></div>
-
-                    <div class="relative bg-white rounded-2xl p-5 shadow-card space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-brand-blue text-white flex items-center justify-center text-lg font-black ring-4 ring-[#EEF7FF] relative z-10">1</div>
-                        <h3 class="font-extrabold text-slate-900 text-sm">Đặt hàng</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            Mua tại website, đại lý Abraham hoặc gian hàng trong siêu thị. Giữ lại mã đơn hàng.
-                        </p>
-                    </div>
-
-                    <div class="relative bg-white rounded-2xl p-5 shadow-card space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-brand-blue text-white flex items-center justify-center text-lg font-black ring-4 ring-[#EEF7FF] relative z-10">2</div>
-                        <h3 class="font-extrabold text-slate-900 text-sm">Nhận tin nhắn</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            Abraham gửi link quay thưởng qua Zalo trong vòng 24 giờ sau khi đơn được xác nhận.
-                        </p>
-                    </div>
-
-                    <div class="relative bg-white rounded-2xl p-5 shadow-card space-y-3">
-                        <div class="w-12 h-12 rounded-full bg-[#F43F5E] text-white flex items-center justify-center text-lg font-black ring-4 ring-[#EEF7FF] relative z-10">3</div>
-                        <h3 class="font-extrabold text-slate-900 text-sm">Quay &amp; nhận quà</h3>
-                        <p class="text-xs text-slate-500 leading-relaxed">
-                            Quà được giao kèm xe hoặc gửi về địa chỉ của bạn trong 5–7 ngày làm việc.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Lưu ý -->
-                <div class="mt-5 bg-white rounded-2xl p-5 shadow-card">
-                    <h4 class="font-extrabold text-slate-900 text-xs uppercase tracking-wide mb-3">
-                        <i class="fa-solid fa-triangle-exclamation text-[#F43F5E]"></i> Điều kiện áp dụng
-                    </h4>
-                    <ul class="space-y-2 text-xs text-slate-600 leading-relaxed">
-                        <li class="flex gap-2">
-                            <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
-                            <span>Mỗi số điện thoại nhận tối đa 10 lượt quay trong toàn bộ chương trình.</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
-                            <span>Lượt quay hết hạn sau 7 ngày kể từ khi nhận được tin nhắn.</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
-                            <span>Đơn hàng bị huỷ hoặc hoàn trả sẽ bị thu hồi lượt quay và phần quà tương ứng.</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
-                            <span>Quà tặng không quy đổi thành tiền mặt.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Bảng bậc lượt quay -->
-            <div class="lg:col-span-5">
-                <div class="bg-white rounded-2xl shadow-card overflow-hidden">
-                    <div class="bg-brand-blue px-5 py-4">
-                        <h3 class="text-white font-black text-sm uppercase tracking-wide">Đơn càng lớn, lượt càng nhiều</h3>
-                    </div>
-
-                    <table class="w-full text-sm">
-                        <caption class="sr-only">Số lượt quay tương ứng với giá trị đơn hàng</caption>
-                        <thead>
-                            <tr class="text-[10px] uppercase tracking-widest text-slate-400 border-b border-slate-100">
-                                <th scope="col" class="text-left font-extrabold px-5 py-3">Giá trị đơn hàng</th>
-                                <th scope="col" class="text-right font-extrabold px-5 py-3">Lượt quay</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-100">
-                            <tr>
-                                <td class="px-5 py-4">
-                                    <span class="font-bold text-slate-800 block">Từ 500.000đ</span>
-                                    <span class="text-xs text-slate-500">Phụ kiện, phụ tùng</span>
-                                </td>
-                                <td class="px-5 py-4 text-right">
-                                    <span class="font-black text-brand-blue text-lg">1</span>
-                                    <span class="text-xs text-slate-500 block">lượt</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-5 py-4">
-                                    <span class="font-bold text-slate-800 block">Từ 5.000.000đ</span>
-                                    <span class="text-xs text-slate-500">Một chiếc xe bất kỳ</span>
-                                </td>
-                                <td class="px-5 py-4 text-right">
-                                    <span class="font-black text-brand-blue text-lg">3</span>
-                                    <span class="text-xs text-slate-500 block">lượt</span>
-                                </td>
-                            </tr>
-                            <tr class="bg-amber-50/60">
-                                <td class="px-5 py-4">
-                                    <span class="font-bold text-slate-800 block">Từ 10.000.000đ</span>
-                                    <span class="text-xs text-[#F43F5E] font-semibold">Tặng thêm 1 nón bảo hiểm</span>
-                                </td>
-                                <td class="px-5 py-4 text-right">
-                                    <span class="font-black text-[#F43F5E] text-lg">7</span>
-                                    <span class="text-xs text-slate-500 block">lượt</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-
-                    <div class="px-5 py-4 border-t border-slate-100">
-                        <a href="#dat-hang" class="w-full bg-gradient-to-r from-[#F43F5E] to-[#2563EB] hover:from-[#FB7185] hover:to-[#60A5FA] text-white font-extrabold text-xs uppercase tracking-wider py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-bolt"></i> Đặt hàng để nhận lượt quay
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Băng chạy: khách vừa trúng thưởng -->
-        <div class="mt-10 bg-white rounded-2xl shadow-card overflow-hidden">
-            <div class="flex items-stretch">
-                <div class="shrink-0 bg-[#F43F5E] text-white px-4 sm:px-5 flex items-center gap-2 text-[11px] font-black uppercase tracking-widest">
-                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
-                    <span class="hidden sm:inline">Vừa trúng thưởng</span>
-                    <span class="sm:hidden">Live</span>
-                </div>
-
-                <div class="marquee flex-1 overflow-hidden py-3.5">
-                    <div class="marquee-track flex gap-8 whitespace-nowrap text-xs font-semibold text-slate-600">
-                        <!-- Danh sách lặp 2 lần để chạy liền mạch -->
-                        <span><i class="fa-solid fa-gift text-brand-blue"></i> Ngọc A*** · 0903***112 · Nón bảo hiểm</span>
-                        <span><i class="fa-solid fa-gift text-brand-blue"></i> Minh T*** · 0912***478 · Voucher 50K</span>
-                        <span><i class="fa-solid fa-gift text-brand-blue"></i> Hải Đ*** · 0987***330 · Bộ phụ kiện 500K</span>
-                        <span><i class="fa-solid fa-gift text-brand-blue"></i> Thu H*** · 0935***091 · Bình nước cao cấp</span>
-                        <span><i class="fa-solid fa-gift text-brand-blue"></i> Quốc B*** · 0961***725 · Free ship toàn quốc</span>
-                        <span aria-hidden="true"><i class="fa-solid fa-gift text-brand-blue"></i> Ngọc A*** · 0903***112 · Nón bảo hiểm</span>
-                        <span aria-hidden="true"><i class="fa-solid fa-gift text-brand-blue"></i> Minh T*** · 0912***478 · Voucher 50K</span>
-                        <span aria-hidden="true"><i class="fa-solid fa-gift text-brand-blue"></i> Hải Đ*** · 0987***330 · Bộ phụ kiện 500K</span>
-                        <span aria-hidden="true"><i class="fa-solid fa-gift text-brand-blue"></i> Thu H*** · 0935***091 · Bình nước cao cấp</span>
-                        <span aria-hidden="true"><i class="fa-solid fa-gift text-brand-blue"></i> Quốc B*** · 0961***725 · Free ship toàn quốc</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</section>
-
-
-<!-- ================================================================
-     THÊM VÀO KHỐI <style> Ở PHẦN <head>
-================================================================= -->
-<style>
+    /* =========================================================
+       BĂNG CHẠY
+    ========================================================== */
     .marquee-track {
         animation: marquee 32s linear infinite;
         width: max-content;
@@ -1034,19 +111,716 @@
         to   { transform: translateX(-50%); }
     }
 
+    ::selection { background: #F43F5E; color: #fff; }
+
+    body { background: #FFF9FA; }
+
     @media (prefers-reduced-motion: reduce) {
+        .wheel-rotor, .wheel-label-counter { transition-duration: 0.4s; }
         .marquee-track { animation: none; }
+        .animate-bounce, .animate-pulse, .btn-pulse { animation: none !important; }
     }
 </style>
+</head>
+<body class="font-sans bg-slate-50 text-slate-800 antialiased selection:bg-brand-blue selection:text-white">
 
+    <!-- ==================== THANH THÔNG BÁO ==================== -->
+    <div class="bg-gradient-to-r from-[#2563EB] via-[#60A5FA] to-[#F43F5E] text-white text-[11px] md:text-sm font-bold py-2 px-4 text-center tracking-wide uppercase shadow-md flex items-center justify-center gap-2">
+        <i class="fa-solid fa-graduation-cap animate-bounce text-sky-100 hidden sm:inline"></i>
+        <span>Sẵn Sàng Đến Trường 2026 — Mua Xe Đạp Abraham, Quay Thưởng 100% Có Quà</span>
+        <i class="fa-solid fa-graduation-cap animate-bounce text-sky-100 hidden sm:inline"></i>
+    </div>
 
-<!-- ================================================================
-     THÊM VÀO CUỐI <script> TRƯỚC </body>
-================================================================= -->
+    <!-- ==================== ĐIỀU HƯỚNG ==================== -->
+    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+
+            <a href="#" class="flex items-center gap-2 group shrink-0">
+                <div class="bg-brand-blue text-white px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg font-black text-base sm:text-xl tracking-wider whitespace-nowrap group-hover:bg-[#F43F5E] transition">
+                    ABRAHAM
+                </div>
+                <span class="font-bold text-base sm:text-lg tracking-tight text-slate-900">BIKE</span>
+            </a>
+
+            <div class="hidden xl:flex items-center gap-6 font-semibold text-sm text-slate-700 whitespace-nowrap">
+                <a href="#vong-quay" class="text-brand-blue hover:text-[#F43F5E] transition">Thể Lệ Chương Trình</a>
+                <a href="#bo-suu-tap" class="hover:text-brand-blue transition">Xe Đạp Học Sinh</a>
+                <a href="#ly-do-chon" class="hover:text-brand-blue transition">Vì Sao Chọn Abraham</a>
+                <a href="#dat-hang" class="hover:text-brand-blue transition">Tìm Đại Lý</a>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+                <a href="#vong-quay" class="hidden sm:inline-block bg-brand-blue hover:bg-[#F43F5E] text-white px-5 py-2.5 rounded-full font-extrabold text-xs uppercase tracking-wider whitespace-nowrap shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                    Tham Gia Ngay
+                </a>
+
+                <button type="button" id="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Mở menu"
+                        class="xl:hidden w-11 h-11 rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 transition flex items-center justify-center text-xl">
+                    <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden xl:hidden border-t border-slate-100 bg-white">
+            <div class="px-4 sm:px-6 py-4 flex flex-col font-semibold text-slate-700">
+                <a href="#vong-quay" class="py-3 border-b border-slate-100 text-brand-blue transition">Thể Lệ Chương Trình</a>
+                <a href="#bo-suu-tap" class="py-3 border-b border-slate-100 hover:text-brand-blue transition">Xe Đạp Học Sinh</a>
+                <a href="#ly-do-chon" class="py-3 border-b border-slate-100 hover:text-brand-blue transition">Vì Sao Chọn Abraham</a>
+                <a href="#dat-hang" class="py-3 border-b border-slate-100 hover:text-brand-blue transition">Tìm Đại Lý</a>
+                <a href="#vong-quay" class="mt-4 sm:hidden bg-brand-blue hover:bg-[#F43F5E] text-white text-center px-5 py-3 rounded-xl font-extrabold text-xs uppercase tracking-wider transition">
+                    Tham Gia Ngay
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== BĂNG CHẠY KHÁCH TRÚNG ==================== -->
+    <div id="live-ticker" class="bg-white border-b border-slate-100 overflow-hidden" style="display:none">
+        <div class="max-w-[1400px] mx-auto flex items-stretch">
+            <div class="shrink-0 bg-[#F43F5E] text-white px-4 sm:px-5 flex items-center gap-2 text-[11px] font-black uppercase tracking-widest">
+                <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                <span class="hidden sm:inline">Vừa trúng thưởng</span>
+                <span class="sm:hidden">Live</span>
+            </div>
+            <div class="marquee flex-1 overflow-hidden py-3">
+                <div class="marquee-track flex gap-8 whitespace-nowrap text-xs font-semibold text-slate-600" data-ticker-track></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         SECTION 1: HERO + VÒNG QUAY
+    ========================================================== -->
+    <section id="khuyen-mai"
+        class="abraham-hero relative bg-white text-slate-900 overflow-hidden py-12 lg:py-16 border-b border-sky-100">
+
+        <div class="abraham-grid-bg absolute inset-0 pointer-events-none"></div>
+
+        <div class="absolute -top-24 -left-24 w-80 h-80 rounded-full border-[60px] border-sky-300/20 pointer-events-none"></div>
+        <div class="absolute -right-28 top-20 w-96 h-96 rounded-full bg-blue-100/40 blur-3xl pointer-events-none"></div>
+
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#60A5FA] via-[#F43F5E] to-[#FBBF24]"></div>
+
+        <div class="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 xl:py-20">
+
+            <div class="grid lg:grid-cols-12 gap-10 xl:gap-12 items-center">
+
+                <!-- ============ CỘT TRÁI ============ -->
+                <div class="lg:col-span-5 space-y-6 text-center lg:text-left">
+
+                    <div class="hero-badge inline-flex items-center gap-2 bg-white border border-sky-300/70 rounded-full px-4 py-2">
+                        <span class="flex items-center justify-center w-6 h-6 rounded-full bg-[#F43F5E] text-white text-[10px]">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </span>
+                        <span class="text-[#2563EB] font-black text-[11px] sm:text-xs uppercase tracking-[0.16em]">
+                            Back To School 2026
+                        </span>
+                    </div>
+
+                    <div class="space-y-2">
+                        <p class="text-[#2563EB] font-extrabold uppercase tracking-[0.24em] text-xs sm:text-sm">
+                            Mua xe đạp Abraham
+                        </p>
+
+                        <h1 class="font-black tracking-[-0.045em] leading-[0.95] text-[#1D4ED8]
+                                   text-[3.1rem] sm:text-6xl lg:text-[3.7rem] xl:text-[4.4rem]">
+                            SẴN SÀNG
+                            <br>
+                            <span class="hero-gold-text">ĐẾN TRƯỜNG</span>
+                        </h1>
+
+                        <div class="flex items-center justify-center lg:justify-start gap-3 pt-2">
+                            <span class="h-[3px] w-9 bg-[#F43F5E] rounded-full"></span>
+                            <span class="text-[#2563EB] font-black uppercase tracking-[0.14em] text-lg sm:text-xl">
+                                Trúng thưởng 100%
+                            </span>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        Mua xe đạp Abraham nhóm xe học sinh tại đại lý trên toàn quốc,
+                        quét mã QR tại quầy và quay thưởng ngay tại chỗ.
+                        Mọi khách tham gia đều nhận được quà, không có lượt trắng.
+                    </p>
+
+                    <div class="hero-offer-card max-w-lg mx-auto lg:mx-0 bg-white border border-slate-200 rounded-2xl p-4 sm:p-5">
+                        <div class="grid grid-cols-2 divide-x divide-slate-200">
+                            <div class="px-3 text-center lg:text-left">
+                                <p class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Thời gian</p>
+                                <p class="mt-1 text-lg sm:text-xl font-black text-[#F43F5E]">21/08 – 15/09</p>
+                            </div>
+                            <div class="px-3 sm:px-5 text-center lg:text-left">
+                                <p class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400">Quà tặng</p>
+                                <p class="mt-1 text-lg sm:text-xl font-black text-[#2563EB]">100% CÓ QUÀ</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3">
+                        <a href="#vong-quay"
+                           class="btn-abraham bg-gradient-to-r from-[#2563EB] to-[#F43F5E]
+                                  hover:from-[#60A5FA] hover:to-[#FB7185]
+                                  text-white rounded-xl px-7 py-4 font-black uppercase tracking-wider text-xs
+                                  transition-all duration-300 flex items-center justify-center gap-2.5 hover:-translate-y-0.5">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span>Xem thể lệ</span>
+                        </a>
+
+                        <a href="#bo-suu-tap"
+                           class="bg-white border-2 border-[#F43F5E] hover:bg-[#FFF1F2] hover:text-[#E11D48]
+                                  text-[#2563EB] rounded-xl px-7 py-4 font-black uppercase tracking-wider text-xs
+                                  transition-all flex items-center justify-center gap-2.5">
+                            <i class="fa-solid fa-bicycle text-[#F43F5E]"></i>
+                            <span>Xem các mẫu xe</span>
+                        </a>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-x-5 gap-y-4 pt-2">
+                        <div class="flex items-center gap-3 text-left">
+                            <span class="w-10 h-10 shrink-0 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+                                <i class="fa-solid fa-store"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-extrabold text-slate-800">Đại lý toàn quốc</p>
+                                <p class="text-[10px] text-slate-400">Áp dụng mọi cửa hàng</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-left">
+                            <span class="w-10 h-10 shrink-0 rounded-xl bg-rose-50 text-[#F43F5E] flex items-center justify-center">
+                                <i class="fa-solid fa-bicycle"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-extrabold text-slate-800">Xe học sinh</p>
+                                <p class="text-[10px] text-slate-400">Size 12 – 26 inch</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-left">
+                            <span class="w-10 h-10 shrink-0 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+                                <i class="fa-solid fa-qrcode"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-extrabold text-slate-800">Quét QR tại quầy</p>
+                                <p class="text-[10px] text-slate-400">Qua Zalo OA Abraham</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-3 text-left">
+                            <span class="w-10 h-10 shrink-0 rounded-xl bg-rose-50 text-[#F43F5E] flex items-center justify-center">
+                                <i class="fa-solid fa-gift"></i>
+                            </span>
+                            <div>
+                                <p class="text-xs font-extrabold text-slate-800">Nhận quà tại chỗ</p>
+                                <p class="text-[10px] text-slate-400">Không có lượt trắng</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ============ CỘT GIỮA: VÒNG QUAY ============ -->
+                <div class="lg:col-span-5 flex flex-col items-center">
+
+                    <div class="relative w-full max-w-[520px]">
+                        <div class="absolute top-3 left-1/2 -translate-x-1/2 z-30 whitespace-nowrap">
+                            <span class="bg-gradient-to-r from-[#2563EB] to-[#F43F5E] text-white
+                                         text-[10px] sm:text-xs font-black uppercase tracking-[0.16em]
+                                         px-4 py-2 rounded-full shadow-xl">
+                                <i class="fa-solid fa-gift text-[#FDE68A] mr-1"></i>
+                                Thử vận may của bạn
+                            </span>
+                        </div>
+
+                        <div class="wheel-host-glow pt-10">
+                            <div data-wheel data-wheel-id="hero" class="w-full relative z-10"></div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 min-h-[54px] flex items-center justify-center">
+                        <p data-wheel-result="hero" role="status" aria-live="polite"
+                           class="text-center text-sm sm:text-base font-black text-[#2563EB]"></p>
+                    </div>
+
+                </div>
+
+                <!-- ============ CỘT PHẢI: PHẦN THƯỞNG ============ -->
+                <div class="hidden xl:block xl:col-span-2">
+                    <div class="space-y-3">
+
+                        <p class="text-[10px] uppercase font-black tracking-[0.2em] text-slate-400">
+                            Phần thưởng
+                        </p>
+
+                        <div class="bg-gradient-to-br from-[#2563EB] via-[#3B82F6] to-[#F43F5E] text-white rounded-2xl p-4 shadow-xl">
+                            <div class="w-9 h-9 mb-3 rounded-xl bg-[#FDE68A] text-[#2563EB] flex items-center justify-center">
+                                <i class="fa-solid fa-crown"></i>
+                            </div>
+                            <p class="text-xs font-bold text-sky-100">Giải Đặc biệt</p>
+                            <p class="text-[#FFF7CC] text-base font-black">MÁY TÍNH BẢNG</p>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4">
+                            <div class="w-9 h-9 mb-3 rounded-xl bg-rose-50 text-[#F43F5E] flex items-center justify-center">
+                                <i class="fa-solid fa-bicycle"></i>
+                            </div>
+                            <p class="text-xs font-bold text-slate-500">Giải Nhất</p>
+                            <p class="text-[#2563EB] text-base font-black">XE ĐẠP 24" / 26"</p>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4">
+                            <div class="w-9 h-9 mb-3 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+                                <i class="fa-solid fa-helmet-safety"></i>
+                            </div>
+                            <p class="text-xs font-bold text-slate-500">Giải Nhì</p>
+                            <p class="text-[#2563EB] text-base font-black">NÓN BẢO HIỂM</p>
+                        </div>
+
+                        <div class="bg-white border border-slate-200 rounded-2xl p-4">
+                            <div class="w-9 h-9 mb-3 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center">
+                                <i class="fa-solid fa-gift"></i>
+                            </div>
+                            <p class="text-xs font-bold text-slate-500">Và nhiều</p>
+                            <p class="text-[#2563EB] text-base font-black">QUÀ KHÁC</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 2: THỂ LỆ CHƯƠNG TRÌNH
+    ========================================================== -->
+    <section id="vong-quay" class="py-16 lg:py-20 bg-gradient-to-br from-[#EFF6FF] via-white to-[#FFF1F2]">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="grid lg:grid-cols-12 gap-8 items-center mb-12">
+                <div class="lg:col-span-7 space-y-3">
+                    <span class="inline-flex items-center gap-2 text-brand-blue font-extrabold text-[11px] uppercase tracking-widest border border-brand-blue/30 bg-white px-3 py-1.5 rounded-full">
+                        <i class="fa-solid fa-circle-info text-[9px]"></i> Thể Lệ Chương Trình
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-black text-brand-blue tracking-tight leading-tight">
+                        SẴN SÀNG ĐẾN TRƯỜNG – TRÚNG THƯỞNG 100%
+                    </h2>
+                    <p class="text-slate-600 text-sm font-medium max-w-xl">
+                        Mua xe đạp Abraham nhóm xe học sinh size 12–26 inch tại bất kỳ đại lý nào
+                        trên toàn quốc, quét mã QR tại quầy và quay thưởng ngay tại chỗ.
+                        Mọi khách tham gia đều có quà.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-2xl p-5 text-slate-800 shadow-xl border border-blue-100">
+                        <p class="text-[11px] font-extrabold uppercase tracking-widest text-[#F43F5E] text-center mb-3">
+                            <i class="fa-solid fa-hourglass-half"></i> Chương trình kết thúc sau
+                        </p>
+                        <div id="countdown" class="grid grid-cols-4 gap-2 text-center">
+                            <div class="bg-[#EFF6FF] rounded-xl py-3 border border-blue-100">
+                                <div data-cd="days" class="text-2xl font-black tabular-nums">--</div>
+                                <div class="text-[10px] font-semibold text-slate-500 uppercase">Ngày</div>
+                            </div>
+                            <div class="bg-[#EFF6FF] rounded-xl py-3 border border-blue-100">
+                                <div data-cd="hours" class="text-2xl font-black tabular-nums">--</div>
+                                <div class="text-[10px] font-semibold text-slate-500 uppercase">Giờ</div>
+                            </div>
+                            <div class="bg-[#EFF6FF] rounded-xl py-3 border border-blue-100">
+                                <div data-cd="minutes" class="text-2xl font-black tabular-nums">--</div>
+                                <div class="text-[10px] font-semibold text-slate-500 uppercase">Phút</div>
+                            </div>
+                            <div class="bg-[#EFF6FF] rounded-xl py-3 border border-blue-100">
+                                <div data-cd="seconds" class="text-2xl font-black tabular-nums text-[#F43F5E]">--</div>
+                                <div class="text-[10px] font-semibold text-slate-500 uppercase">Giây</div>
+                            </div>
+                        </div>
+                        <p class="text-[11px] text-slate-500 text-center mt-3 font-medium">
+                            Từ 21/08/2026 đến hết ngày 15/09/2026.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+
+                <div class="lg:col-span-7">
+                    <div class="relative grid sm:grid-cols-3 gap-5">
+                        <div class="hidden sm:block absolute top-6 left-[16%] right-[16%] h-0.5 bg-brand-blue/20" aria-hidden="true"></div>
+
+                        <div class="relative bg-white rounded-2xl p-5 shadow-card space-y-3">
+                            <div class="w-12 h-12 rounded-full bg-brand-blue text-white flex items-center justify-center text-lg font-black ring-4 ring-[#EEF7FF] relative z-10">1</div>
+                            <h3 class="font-extrabold text-slate-900 text-sm">Mua xe tại đại lý</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                Chọn xe đạp Abraham nhóm học sinh, size 12–26 inch tại cửa hàng
+                                thuộc hệ thống đại lý trên toàn quốc.
+                            </p>
+                        </div>
+
+                        <div class="relative bg-white rounded-2xl p-5 shadow-card space-y-3">
+                            <div class="w-12 h-12 rounded-full bg-brand-blue text-white flex items-center justify-center text-lg font-black ring-4 ring-[#EEF7FF] relative z-10">2</div>
+                            <h3 class="font-extrabold text-slate-900 text-sm">Quét mã QR tại quầy</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                Quét mã để truy cập Zalo OA Abraham Bike, cung cấp họ tên
+                                và số điện thoại để nhận lượt quay.
+                            </p>
+                        </div>
+
+                        <div class="relative bg-white rounded-2xl p-5 shadow-card space-y-3">
+                            <div class="w-12 h-12 rounded-full bg-[#F43F5E] text-white flex items-center justify-center text-lg font-black ring-4 ring-[#EEF7FF] relative z-10">3</div>
+                            <h3 class="font-extrabold text-slate-900 text-sm">Quay &amp; nhận quà</h3>
+                            <p class="text-xs text-slate-500 leading-relaxed">
+                                Quay thưởng ngay tại cửa hàng và nhận phần quà của bạn.
+                                100% khách tham gia đều có quà, không có lượt trắng.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 bg-white rounded-2xl p-5 shadow-card">
+                        <h4 class="font-extrabold text-slate-900 text-xs uppercase tracking-wide mb-3">
+                            <i class="fa-solid fa-triangle-exclamation text-[#F43F5E]"></i> Điều kiện áp dụng
+                        </h4>
+                        <ul class="space-y-2 text-xs text-slate-600 leading-relaxed">
+                            <li class="flex gap-2">
+                                <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
+                                <span>Mỗi hoá đơn mua xe hợp lệ tương ứng đúng 01 lượt quay.</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
+                                <span>Áp dụng cho xe đạp Abraham nhóm xe học sinh, size 12–26 inch.</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
+                                <span>Quà tặng được cấp theo số lượng giới hạn của từng loại.</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
+                                <span>Nếu một loại quà đã hết trong thời gian chương trình, khách hàng
+                                      được đổi sang quà có giá trị tương đương theo quy định của công ty.</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
+                                <span>Quà tặng không quy đổi thành tiền mặt.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5">
+                    <div class="bg-white rounded-2xl shadow-card overflow-hidden">
+                        <div class="bg-brand-blue px-5 py-4">
+                            <h3 class="text-white font-black text-sm uppercase tracking-wide">Cơ cấu giải thưởng</h3>
+                        </div>
+
+                        <table class="w-full text-sm">
+                            <caption class="sr-only">Cơ cấu giải thưởng chương trình</caption>
+                            <thead>
+                                <tr class="text-[10px] uppercase tracking-widest text-slate-400 border-b border-slate-100">
+                                    <th scope="col" class="text-left font-extrabold px-5 py-3">Tầng giải</th>
+                                    <th scope="col" class="text-left font-extrabold px-5 py-3">Quà tặng</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-100">
+                                <tr class="bg-amber-50/60">
+                                    <td class="px-5 py-3"><span class="font-black text-[#F43F5E] block">Đặc biệt</span></td>
+                                    <td class="px-5 py-3 text-xs text-slate-600">Máy tính bảng</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-5 py-3"><span class="font-bold text-slate-800 block">Giải Nhất</span></td>
+                                    <td class="px-5 py-3 text-xs text-slate-600">Xe đạp không đề 24" hoặc 26"</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-5 py-3"><span class="font-bold text-slate-800 block">Giải Nhì</span></td>
+                                    <td class="px-5 py-3 text-xs text-slate-600">
+                                        Nón bảo hiểm thể thao / nón trẻ em hoặc bơm xe A8-3818, yên da cao cấp
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-5 py-3"><span class="font-bold text-slate-800 block">Giải Ba</span></td>
+                                    <td class="px-5 py-3 text-xs text-slate-600">
+                                        Bơm xe A2, khoá dây 4 số, túi treo, ống bơm mini
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-5 py-3"><span class="font-bold text-slate-800 block">Giải Tư</span></td>
+                                    <td class="px-5 py-3 text-xs text-slate-600">Đèn hậu chớp + chuông</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-5 py-3"><span class="font-bold text-slate-800 block">Khuyến khích</span></td>
+                                    <td class="px-5 py-3 text-xs text-slate-600">Bình nước, cặp đèn phản quang xe đạp</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="px-5 py-4 border-t border-slate-100">
+                            <a href="#dat-hang" class="w-full bg-gradient-to-r from-[#F43F5E] to-[#2563EB] hover:from-[#FB7185] hover:to-[#60A5FA] text-white font-extrabold text-xs uppercase tracking-wider py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-location-dot"></i> Tìm đại lý gần bạn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 3: XE ĐẠP HỌC SINH
+         LƯU Ý: thay tên mẫu xe, size và giá bằng dữ liệu thật.
+    ========================================================== -->
+    <section id="bo-suu-tap" class="py-16 lg:py-20 bg-white">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+                <div class="space-y-2">
+                    <span class="text-brand-blue font-extrabold text-[11px] uppercase tracking-widest">Nhóm xe áp dụng chương trình</span>
+                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                        XE ĐẠP HỌC SINH ABRAHAM
+                    </h2>
+                </div>
+                <a href="#dat-hang" class="text-brand-blue font-extrabold text-xs uppercase tracking-widest hover:text-[#F43F5E] transition flex items-center gap-2">
+                    Tìm Đại Lý <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
+
+                <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card hover:shadow-2xl transition-all duration-300 flex flex-col group">
+                    <div class="relative overflow-hidden bg-slate-50 h-56">
+                        <span class="absolute top-3 left-3 z-10 bg-brand-blue text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase">12 inch</span>
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=800&q=80"
+                             alt="Xe đạp học sinh Abraham size 12 inch"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between gap-4">
+                        <div class="space-y-2">
+                            <h3 class="font-extrabold text-slate-900 group-hover:text-brand-blue transition">Xe đạp trẻ em 12"</h3>
+                            <p class="text-xs text-slate-500">Phù hợp bé 2 – 4 tuổi</p>
+                        </div>
+                        <a href="#dat-hang" class="w-full bg-brand-blue hover:bg-[#F43F5E] text-white font-extrabold py-3 rounded-xl shadow-lg transition text-center uppercase tracking-wider flex items-center justify-center gap-2 text-xs">
+                            <i class="fa-solid fa-location-dot"></i> Xem tại đại lý
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card hover:shadow-2xl transition-all duration-300 flex flex-col group">
+                    <div class="relative overflow-hidden bg-slate-50 h-56">
+                        <span class="absolute top-3 left-3 z-10 bg-brand-blue text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase">16 inch</span>
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=800&q=80"
+                             alt="Xe đạp học sinh Abraham size 16 inch"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between gap-4">
+                        <div class="space-y-2">
+                            <h3 class="font-extrabold text-slate-900 group-hover:text-brand-blue transition">Xe đạp trẻ em 16"</h3>
+                            <p class="text-xs text-slate-500">Phù hợp bé 4 – 7 tuổi</p>
+                        </div>
+                        <a href="#dat-hang" class="w-full bg-brand-blue hover:bg-[#F43F5E] text-white font-extrabold py-3 rounded-xl shadow-lg transition text-center uppercase tracking-wider flex items-center justify-center gap-2 text-xs">
+                            <i class="fa-solid fa-location-dot"></i> Xem tại đại lý
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card hover:shadow-2xl transition-all duration-300 flex flex-col group">
+                    <div class="relative overflow-hidden bg-slate-50 h-56">
+                        <span class="absolute top-3 left-3 z-10 bg-sky-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase">20 inch</span>
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=800&q=80"
+                             alt="Xe đạp học sinh Abraham size 20 inch"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between gap-4">
+                        <div class="space-y-2">
+                            <h3 class="font-extrabold text-slate-900 group-hover:text-brand-blue transition">Xe đạp học sinh 20"</h3>
+                            <p class="text-xs text-slate-500">Phù hợp học sinh tiểu học</p>
+                        </div>
+                        <a href="#dat-hang" class="w-full bg-brand-blue hover:bg-[#F43F5E] text-white font-extrabold py-3 rounded-xl shadow-lg transition text-center uppercase tracking-wider flex items-center justify-center gap-2 text-xs">
+                            <i class="fa-solid fa-location-dot"></i> Xem tại đại lý
+                        </a>
+                    </div>
+                </article>
+
+                <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card hover:shadow-2xl transition-all duration-300 flex flex-col group">
+                    <div class="relative overflow-hidden bg-slate-50 h-56">
+                        <span class="absolute top-3 left-3 z-10 bg-emerald-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase">24 – 26 inch</span>
+                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=800&q=80"
+                             alt="Xe đạp học sinh Abraham size 24 đến 26 inch"
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between gap-4">
+                        <div class="space-y-2">
+                            <h3 class="font-extrabold text-slate-900 group-hover:text-brand-blue transition">Xe đạp học sinh 24" – 26"</h3>
+                            <p class="text-xs text-slate-500">Phù hợp học sinh cấp 2, cấp 3</p>
+                        </div>
+                        <a href="#dat-hang" class="w-full bg-brand-blue hover:bg-[#F43F5E] text-white font-extrabold py-3 rounded-xl shadow-lg transition text-center uppercase tracking-wider flex items-center justify-center gap-2 text-xs">
+                            <i class="fa-solid fa-location-dot"></i> Xem tại đại lý
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 4: VÌ SAO CHỌN ABRAHAM
+    ========================================================== -->
+    <section id="ly-do-chon" class="py-20 bg-gradient-to-br from-[#F4F9FF] via-white to-[#FFF5F6]">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+
+            <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+                <span class="text-brand-blue font-extrabold text-xs uppercase tracking-widest bg-sky-100 px-4 py-1.5 rounded-full">
+                    Uy Tín Tạo Niềm Tin
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+                    VÌ SAO PHỤ HUYNH TIN CHỌN ABRAHAM?
+                </h2>
+                <p class="text-slate-600 text-base">
+                    Xe đạp an toàn, đúng vóc dáng trẻ em Việt Nam, có mặt ở khắp nơi khi bạn cần.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 hover:border-brand-blue/30 transition duration-300 hover:shadow-xl text-center space-y-4 group">
+                    <div class="w-20 h-20 bg-brand-blue/10 text-brand-blue rounded-2xl flex items-center justify-center mx-auto text-3xl group-hover:bg-brand-blue group-hover:text-white transition duration-300">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Chuẩn an toàn hợp quy (CR)</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Sản phẩm đạt chứng nhận An toàn – Hợp chuẩn – Hợp quy,
+                        thiết kế theo tỉ lệ vóc dáng trẻ em Việt Nam.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 hover:border-brand-blue/30 transition duration-300 hover:shadow-xl text-center space-y-4 group">
+                    <div class="w-20 h-20 bg-brand-blue/10 text-brand-blue rounded-2xl flex items-center justify-center mx-auto text-3xl group-hover:bg-brand-blue group-hover:text-white transition duration-300">
+                        <i class="fa-solid fa-children"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Đủ size từ 12 đến 26 inch</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Từ bé tập đi xe đến học sinh cấp 3, luôn có kích thước phù hợp
+                        với chiều cao và độ tuổi của con.
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl border border-slate-100 hover:border-brand-blue/30 transition duration-300 hover:shadow-xl text-center space-y-4 group">
+                    <div class="w-20 h-20 bg-brand-blue/10 text-brand-blue rounded-2xl flex items-center justify-center mx-auto text-3xl group-hover:bg-brand-blue group-hover:text-white transition duration-300">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <h3 class="text-xl font-extrabold text-slate-900">Hệ thống đại lý toàn quốc</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        Mua sắm và bảo hành thuận tiện tại đại lý gần nhà,
+                        chương trình áp dụng trên toàn hệ thống.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- =========================================================
+         SECTION 5: TÌM ĐẠI LÝ / ĐỂ LẠI THÔNG TIN
+    ========================================================== -->
+    <section id="dat-hang" class="py-20 bg-gradient-to-br from-[#EFF6FF] via-white to-[#FFF1F2] text-slate-800 relative overflow-hidden">
+        <div class="absolute -top-24 left-1/4 w-96 h-96 bg-[#93C5FD]/35 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
+
+            <div class="space-y-4">
+                <span class="bg-gradient-to-r from-[#F43F5E] to-[#FB7185] text-white font-extrabold text-xs px-4 py-1.5 rounded-full uppercase tracking-widest animate-pulse inline-block">
+                    Chương trình kết thúc 15/09/2026
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-[#2563EB]">
+                    CHUẨN BỊ XE MỚI CHO NĂM HỌC <br>
+                    <span class="bg-gradient-to-r from-[#F43F5E] via-[#FB7185] to-[#2563EB] bg-clip-text text-transparent">CÙNG ABRAHAM BIKE</span>
+                </h2>
+                <p class="text-slate-600 text-base sm:text-lg">
+                    Để lại thông tin, đội ngũ Abraham sẽ liên hệ tư vấn size xe phù hợp
+                    và chỉ dẫn đại lý gần bạn nhất.
+                </p>
+            </div>
+
+            <div class="bg-white text-slate-900 p-8 rounded-3xl shadow-2xl text-left max-w-xl mx-auto border-4 border-blue-100">
+                <form id="order-form" novalidate class="space-y-4">
+                    <div>
+                        <label for="fullname" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">Họ và tên của bạn</label>
+                        <input id="fullname" name="fullname" type="text" required autocomplete="name" placeholder="Nguyễn Văn A" class="w-full px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">Số điện thoại nhận tư vấn</label>
+                        <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="numeric" pattern="0[0-9]{9}" placeholder="0901234567" class="w-full px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm">
+                        <p id="phone-error" class="hidden mt-1 text-xs font-semibold text-red-600">Vui lòng nhập số điện thoại 10 chữ số, bắt đầu bằng số 0.</p>
+                    </div>
+                    <div>
+                        <label for="product" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">Size xe bạn quan tâm</label>
+                        <select id="product" name="product" class="w-full px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-semibold">
+                            <option value="12">Xe đạp trẻ em 12 inch</option>
+                            <option value="16">Xe đạp trẻ em 16 inch</option>
+                            <option value="20">Xe đạp học sinh 20 inch</option>
+                            <option value="24-26">Xe đạp học sinh 24 – 26 inch</option>
+                            <option value="tuvan">Chưa rõ, cần tư vấn thêm</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="w-full bg-gradient-to-r from-[#2563EB] via-[#3B82F6] to-[#F43F5E] hover:from-[#60A5FA] hover:via-[#FB7185] hover:to-[#EF4444] text-white font-black text-lg py-4 rounded-xl shadow-cta transition duration-300 uppercase tracking-wider flex items-center justify-center gap-2 mt-6">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Nhận tư vấn</span>
+                    </button>
+                </form>
+
+                <div id="order-success" role="status" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold text-center">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Đã gửi thông tin. Abraham Bike sẽ liên hệ với bạn trong thời gian sớm nhất.
+                </div>
+
+                <div class="mt-4 text-center text-xs text-slate-500 font-medium">
+                    <i class="fa-solid fa-lock text-emerald-600"></i> Thông tin của bạn được bảo mật.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="bg-gradient-to-br from-[#F5FAFF] via-white to-[#FFF5F6] text-slate-600 py-12 border-t border-blue-100 text-sm">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
+
+            <div class="space-y-4">
+                <div class="flex items-center gap-2">
+                    <div class="bg-gradient-to-r from-[#2563EB] to-[#F43F5E] text-white px-2 py-1 rounded font-black text-xl">ABRAHAM</div>
+                    <span class="font-bold text-lg text-[#2563EB]">BIKE</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-relaxed">
+                    Sản phẩm thuộc CÔNG TY TNHH KH KT VẠN THỊNH.
+                </p>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="text-[#2563EB] font-bold text-base mb-3">Thông Tin Liên Hệ</h4>
+                <p><i class="fa-solid fa-phone text-sky-400 mr-2"></i> Hotline: <a href="tel:+84901184998" class="font-bold text-[#2563EB] hover:text-[#F43F5E] transition">090 118 49 98</a></p>
+                <p><i class="fa-solid fa-globe text-brand-blue mr-2"></i> Website: <a href="https://abraham.vn" class="hover:text-[#F43F5E] transition">abraham.vn</a></p>
+                <p><i class="fa-solid fa-envelope text-slate-400 mr-2"></i> Email: <a href="mailto:cskh@abraham.vn" class="hover:text-[#F43F5E] transition">cskh@abraham.vn</a></p>
+            </div>
+
+            <div class="space-y-2">
+                <h4 class="text-[#2563EB] font-bold text-base mb-3">Chương Trình &amp; Hỗ Trợ</h4>
+                <ul class="space-y-1 text-xs">
+                    <li><a href="#vong-quay" class="hover:text-[#F43F5E] transition">Thể lệ chương trình Sẵn sàng đến trường</a></li>
+                    <li><a href="#bo-suu-tap" class="hover:text-[#F43F5E] transition">Hướng dẫn chọn size xe cho con</a></li>
+                    <li><a href="#dat-hang" class="hover:text-[#F43F5E] transition">Tìm đại lý gần bạn</a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-blue-100 text-center text-xs text-slate-500">
+            © 2026 Abraham Bike — Bản quyền thuộc Công ty TNHH KH KT Vạn Thịnh. Tất cả các quyền được bảo lưu.
+        </div>
+    </footer>
+
 <script>
 /* Đếm ngược tới ngày kết thúc chương trình */
 (function () {
-    var END_DATE = new Date('2026-09-30T23:59:59+07:00').getTime();
+    var END_DATE = new Date('2026-09-15T23:59:59+07:00').getTime();
 
     var box = document.getElementById('countdown');
     if (!box) return;
@@ -1082,402 +856,26 @@
         }, 1000);
     }
 })();
+
+/* Menu di động */
+(function () {
+    var btn = document.getElementById('menu-toggle');
+    var panel = document.getElementById('mobile-menu');
+    if (!btn || !panel) return;
+
+    btn.addEventListener('click', function () {
+        var open = panel.classList.toggle('hidden') === false;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+})();
 </script>
 
-    <!-- SECTION 3: SẢN PHẨM NỔI BẬT -->
-    <section id="bo-suu-tap" class="py-16 lg:py-20 bg-white">
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
-                <div class="space-y-2">
-                    <span class="text-brand-blue font-extrabold text-[11px] uppercase tracking-widest">Sản Phẩm Nổi Bật</span>
-                    <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
-                        XE ĐẠP ĐƯỢC YÊU THÍCH NHẤT
-                    </h2>
-                </div>
-                <a href="#dat-hang" class="text-brand-blue font-extrabold text-xs uppercase tracking-widest hover:text-[#F43F5E] transition flex items-center gap-2">
-                    Xem Tất Cả <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
-
-                <!-- Product 1 -->
-                <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card hover:shadow-2xl transition-all duration-300 flex flex-col group">
-                    <div class="relative overflow-hidden bg-slate-50 h-56">
-                        <span class="absolute top-3 left-3 z-10 bg-red-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase">-20%</span>
-                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1576435728678-68d0fbf94e91?auto=format&fit=crop&w=800&q=80"
-                             alt="Xe đạp đua Abraham RS300"
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between gap-4">
-                        <div class="space-y-2">
-                            <h3 class="font-extrabold text-slate-900 group-hover:text-brand-blue transition">Abraham RS300</h3>
-                            <div class="flex items-center gap-2 text-amber-400 text-[11px]">
-                                <span class="flex gap-0.5">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                                </span>
-                                <span class="text-slate-400">(86)</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-baseline justify-between">
-                                <span class="text-lg font-black text-red-600">6.390.000đ</span>
-                                <span class="text-xs text-slate-400 line-through">7.990.000đ</span>
-                            </div>
-                            <a href="#dat-hang" class="w-full bg-brand-blue hover:bg-[#F43F5E] text-white font-extrabold py-3 rounded-xl shadow-lg hover:shadow-cta-hover transition text-center uppercase tracking-wider flex items-center justify-center gap-2 text-xs">
-                                <i class="fa-solid fa-cart-arrow-down"></i> Mua Ngay
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 2 -->
-                <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card hover:shadow-2xl transition-all duration-300 flex flex-col group">
-                    <div class="relative overflow-hidden bg-slate-50 h-56">
-                        <span class="absolute top-3 left-3 z-10 bg-brand-blue text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase">Best Seller</span>
-                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=800&q=80"
-                             alt="Xe đạp đua Abraham GT100 Pro"
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between gap-4">
-                        <div class="space-y-2">
-                            <h3 class="font-extrabold text-slate-900 group-hover:text-brand-blue transition">Abraham GT100 Pro</h3>
-                            <div class="flex items-center gap-2 text-amber-400 text-[11px]">
-                                <span class="flex gap-0.5">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                                </span>
-                                <span class="text-slate-400">(128)</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-baseline justify-between">
-                                <span class="text-lg font-black text-red-600">6.800.000đ</span>
-                                <span class="text-xs text-slate-400 line-through">8.500.000đ</span>
-                            </div>
-                            <a href="#dat-hang" class="w-full bg-brand-blue hover:bg-[#F43F5E] text-white font-extrabold py-3 rounded-xl shadow-lg hover:shadow-cta-hover transition text-center uppercase tracking-wider flex items-center justify-center gap-2 text-xs">
-                                <i class="fa-solid fa-cart-arrow-down"></i> Mua Ngay
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 3 -->
-                <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card hover:shadow-2xl transition-all duration-300 flex flex-col group">
-                    <div class="relative overflow-hidden bg-slate-50 h-56">
-                        <span class="absolute top-3 left-3 z-10 bg-sky-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase">Mới Ra Mắt</span>
-                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?auto=format&fit=crop&w=800&q=80"
-                             alt="Xe đạp touring Abraham CX200"
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between gap-4">
-                        <div class="space-y-2">
-                            <h3 class="font-extrabold text-slate-900 group-hover:text-brand-blue transition">Abraham CX200</h3>
-                            <div class="flex items-center gap-2 text-amber-400 text-[11px]">
-                                <span class="flex gap-0.5">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                                </span>
-                                <span class="text-slate-400">(64)</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-baseline justify-between">
-                                <span class="text-lg font-black text-red-600">7.290.000đ</span>
-                            </div>
-                            <a href="#dat-hang" class="w-full bg-brand-blue hover:bg-[#F43F5E] text-white font-extrabold py-3 rounded-xl shadow-lg hover:shadow-cta-hover transition text-center uppercase tracking-wider flex items-center justify-center gap-2 text-xs">
-                                <i class="fa-solid fa-cart-arrow-down"></i> Mua Ngay
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Product 4 -->
-                <article class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-card hover:shadow-2xl transition-all duration-300 flex flex-col group">
-                    <div class="relative overflow-hidden bg-slate-50 h-56">
-                        <span class="absolute top-3 left-3 z-10 bg-emerald-500 text-white font-extrabold text-[10px] px-2.5 py-1 rounded-md uppercase">Hot</span>
-                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?auto=format&fit=crop&w=800&q=80"
-                             alt="Xe đạp đô thị Abraham URBAN-7"
-                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                    </div>
-                    <div class="p-5 flex-1 flex flex-col justify-between gap-4">
-                        <div class="space-y-2">
-                            <h3 class="font-extrabold text-slate-900 group-hover:text-brand-blue transition">Abraham URBAN-7</h3>
-                            <div class="flex items-center gap-2 text-amber-400 text-[11px]">
-                                <span class="flex gap-0.5">
-                                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-                                </span>
-                                <span class="text-slate-400">(93)</span>
-                            </div>
-                        </div>
-                        <div class="space-y-3">
-                            <div class="flex items-baseline justify-between">
-                                <span class="text-lg font-black text-red-600">5.490.000đ</span>
-                                <span class="text-xs text-slate-400 line-through">6.900.000đ</span>
-                            </div>
-                            <a href="#dat-hang" class="w-full bg-brand-blue hover:bg-[#F43F5E] text-white font-extrabold py-3 rounded-xl shadow-lg hover:shadow-cta-hover transition text-center uppercase tracking-wider flex items-center justify-center gap-2 text-xs">
-                                <i class="fa-solid fa-cart-arrow-down"></i> Mua Ngay
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 4: LÝ DO CHỌN ABRAHAM -->
-    <section id="ly-do-chon" class="py-20 bg-gradient-to-br from-[#F4F9FF] via-white to-[#FFF5F6]">
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-                <span class="text-brand-blue font-extrabold text-xs uppercase tracking-widest bg-sky-100 px-4 py-1.5 rounded-full">
-                    Uy Tín Tạo Niềm Tin
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                    TẠI SAO HƠN 100.000 KHÁCH HÀNG TIN CHỌN ABRAHAM?
-                </h2>
-                <p class="text-slate-600 text-base">
-                    Chúng tôi cam kết mang đến giá trị thực sự cho sức khỏe và phong cách sống của bạn.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-3xl border border-slate-100 hover:border-brand-blue/30 transition duration-300 hover:shadow-xl text-center space-y-4 group">
-                    <div class="w-20 h-20 bg-brand-blue/10 text-brand-blue rounded-2xl flex items-center justify-center mx-auto text-3xl group-hover:bg-brand-blue group-hover:text-white transition duration-300">
-                        <i class="fa-solid fa-shield-halved"></i>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-slate-900">Chuẩn An Toàn Tuyệt Đối (CR)</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        100% sản phẩm đạt chứng nhận An toàn - Hợp chuẩn - Hợp quy, thiết kế tối ưu hóa theo tỉ lệ vóc dáng người Việt Nam.
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl border border-slate-100 hover:border-brand-blue/30 transition duration-300 hover:shadow-xl text-center space-y-4 group">
-                    <div class="w-20 h-20 bg-brand-blue/10 text-brand-blue rounded-2xl flex items-center justify-center mx-auto text-3xl group-hover:bg-brand-blue group-hover:text-white transition duration-300">
-                        <i class="fa-solid fa-award"></i>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-slate-900">20+ Năm Kinh Nghiệm</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Không chỉ cung cấp phương tiện, Abraham tự hào kiến tạo chất lượng sống năng động, gắn bó với gia đình Việt qua nhiều thế hệ.
-                    </p>
-                </div>
-
-                <div class="bg-white p-8 rounded-3xl border border-slate-100 hover:border-brand-blue/30 transition duration-300 hover:shadow-xl text-center space-y-4 group">
-                    <div class="w-20 h-20 bg-brand-blue/10 text-brand-blue rounded-2xl flex items-center justify-center mx-auto text-3xl group-hover:bg-brand-blue group-hover:text-white transition duration-300">
-                        <i class="fa-solid fa-store"></i>
-                    </div>
-                    <h3 class="text-xl font-extrabold text-slate-900">Hệ Thống 3.000+ Đại Lý</h3>
-                    <p class="text-slate-600 text-sm leading-relaxed">
-                        Sản phẩm hiện diện tại các hệ thống siêu thị lớn (Aeon, Emart, Co.opXtra...) giúp bạn dễ dàng mua sắm &amp; bảo hành tận tâm.
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-14 bg-gradient-to-r from-[#2563EB] via-[#60A5FA] to-[#F43F5E] rounded-3xl p-8 text-white shadow-xl">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-white/20">
-                    <div class="p-2">
-                        <div class="text-3xl sm:text-4xl font-black text-sky-200">100.000+</div>
-                        <div class="text-xs sm:text-sm font-semibold mt-1">Xe Đã Đến Tay Khách Hàng</div>
-                    </div>
-                    <div class="p-2">
-                        <div class="text-3xl sm:text-4xl font-black text-sky-200">3.000+</div>
-                        <div class="text-xs sm:text-sm font-semibold mt-1">Điểm Phân Phối Toàn Quốc</div>
-                    </div>
-                    <div class="p-2">
-                        <div class="text-3xl sm:text-4xl font-black text-sky-200">99%</div>
-                        <div class="text-xs sm:text-sm font-semibold mt-1">Khách Hàng Hài Lòng</div>
-                    </div>
-                    <div class="p-2">
-                        <div class="text-3xl sm:text-4xl font-black text-sky-200">5 Năm</div>
-                        <div class="text-xs sm:text-sm font-semibold mt-1">Bảo Hành Khung Sườn</div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- SECTION 5: ĐÁNH GIÁ -->
-    <section id="danh-gia" class="py-20 bg-white">
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-
-            <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-                <span class="text-brand-blue font-extrabold text-xs uppercase tracking-widest bg-sky-100 px-4 py-1.5 rounded-full">
-                    Góc Khách Hàng
-                </span>
-                <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
-                    HÀNH TRÌNH TÍCH CỰC CÙNG ABRAHAM BIKE
-                </h2>
-                <p class="text-slate-600 text-base">
-                    Lắng nghe chia sẻ thực tế từ cộng đồng yêu đạp xe trên toàn quốc.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-slate-50 p-8 rounded-3xl shadow-card flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="flex text-amber-400 gap-1 text-sm">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-slate-700 text-sm leading-relaxed italic">
-                            "Mình mua chiếc GT100 để tập thể dục mỗi sáng. Khung xe nhẹ tênh, bộ đề chuyển số mượt cực kỳ. Màu sơn bên ngoài nhìn còn xịn hơn trong ảnh. Rất đáng tiền!"
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-4 mt-6 pt-4 border-t border-slate-200">
-                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80"
-                             alt="Khách hàng Tuấn Anh" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-blue">
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">Tuấn Anh (24 tuổi)</h4>
-                            <span class="text-xs text-slate-500">TP. Hồ Chí Minh - Đã mua GT100</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-50 p-8 rounded-3xl shadow-card flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="flex text-amber-400 gap-1 text-sm">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-slate-700 text-sm leading-relaxed italic">
-                            "Quyết định sắm chiếc xe gấp U8 là quá chuẩn. Cuối tuần gấp gọn bỏ cốp xe đi cắm trại tiện lắm. Kiểu dáng cực trẻ trung, chụp hình sống ảo đỉnh luôn."
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-4 mt-6 pt-4 border-t border-slate-200">
-                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=200&q=80"
-                             alt="Khách hàng Mai Linh" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-blue">
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">Mai Linh (Traveler)</h4>
-                            <span class="text-xs text-slate-500">Hà Nội - Đã mua Gấp U8</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-50 p-8 rounded-3xl shadow-card flex flex-col justify-between">
-                    <div class="space-y-4">
-                        <div class="flex text-amber-400 gap-1 text-sm">
-                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                        </div>
-                        <p class="text-slate-700 text-sm leading-relaxed italic">
-                            "Đội ngũ hỗ trợ tư vấn rất nhiệt tình. Xe giao tận nhà được đóng gói cẩn thận, mở thùng ra đầy đủ quà tặng phụ kiện. Sẽ giới thiệu cho bạn bè!"
-                        </p>
-                    </div>
-                    <div class="flex items-center gap-4 mt-6 pt-4 border-t border-slate-200">
-                        <img loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80"
-                             alt="Khách hàng Hoàng Minh" class="w-12 h-12 rounded-full object-cover ring-2 ring-brand-blue">
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">Hoàng Minh (30 tuổi)</h4>
-                            <span class="text-xs text-slate-500">Đà Nẵng - Đã mua 700CC</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECTION 6: ĐẶT HÀNG -->
-    <section id="dat-hang" class="py-20 bg-gradient-to-br from-[#EFF6FF] via-white to-[#FFF1F2] text-slate-800 relative overflow-hidden">
-        <div class="absolute -top-24 left-1/4 w-96 h-96 bg-[#93C5FD]/35 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-8">
-
-            <div class="space-y-4">
-                <span class="bg-gradient-to-r from-[#F43F5E] to-[#FB7185] text-white font-extrabold text-xs px-4 py-1.5 rounded-full uppercase tracking-widest animate-pulse inline-block">
-                    Cơ Hội Cuối Cùng Trong Tháng
-                </span>
-                <h2 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight text-[#2563EB]">
-                    BẮT ĐẦU HÀNH TRÌNH TÍCH CỰC <br>
-                    <span class="bg-gradient-to-r from-[#F43F5E] via-[#FB7185] to-[#2563EB] bg-clip-text text-transparent">CÙNG ABRAHAM BIKE NGAY HÔM NAY!</span>
-                </h2>
-                <p class="text-slate-600 text-base sm:text-lg">
-                    Để lại thông tin để nhận ngay lượt quay may mắn, voucher 20% &amp; bộ phụ kiện phượt 500K.
-                </p>
-            </div>
-
-            <div class="bg-white text-slate-900 p-8 rounded-3xl shadow-2xl text-left max-w-xl mx-auto border-4 border-blue-100">
-                <form id="order-form" novalidate class="space-y-4">
-                    <div>
-                        <label for="fullname" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">Họ và tên của bạn</label>
-                        <input id="fullname" name="fullname" type="text" required autocomplete="name" placeholder="Nguyễn Văn A" class="w-full px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm">
-                    </div>
-                    <div>
-                        <label for="phone" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">Số điện thoại nhận tư vấn</label>
-                        <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="numeric" pattern="0[0-9]{9}" placeholder="0901234567" class="w-full px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm">
-                        <p id="phone-error" class="hidden mt-1 text-xs font-semibold text-red-600">Vui lòng nhập số điện thoại 10 chữ số, bắt đầu bằng số 0.</p>
-                    </div>
-                    <div>
-                        <label for="product" class="block text-xs font-extrabold text-slate-700 uppercase mb-1">Chọn dòng xe bạn quan tâm</label>
-                        <select id="product" name="product" class="w-full px-4 py-3 rounded-xl bg-slate-100 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue text-sm font-semibold">
-                            <option value="rs300">Abraham RS300 (Giảm 20%)</option>
-                            <option value="gt100">Abraham GT100 Pro (Giảm 20%)</option>
-                            <option value="cx200">Abraham CX200 (Mới ra mắt)</option>
-                            <option value="urban7">Abraham URBAN-7 (Giảm 20%)</option>
-                        </select>
-                    </div>
-
-                    <button type="submit" class="w-full btn-pulse bg-gradient-to-r from-[#2563EB] via-[#3B82F6] to-[#F43F5E] hover:from-[#60A5FA] hover:via-[#FB7185] hover:to-[#EF4444] text-white font-black text-lg py-4 rounded-xl shadow-cta transition duration-300 uppercase tracking-wider flex items-center justify-center gap-2 mt-6">
-                        <i class="fa-solid fa-paper-plane"></i>
-                        <span>Nhận ưu đãi &amp; tư vấn ngay</span>
-                    </button>
-                </form>
-
-                <div id="order-success" role="status" class="hidden mt-4 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm font-semibold text-center">
-                    <i class="fa-solid fa-circle-check"></i>
-                    Đã gửi thông tin. Tư vấn viên Abraham Bike sẽ gọi cho bạn trong 5 phút.
-                </div>
-
-                <div class="mt-4 text-center text-xs text-slate-500 font-medium">
-                    <i class="fa-solid fa-lock text-emerald-600"></i> Cam kết bảo mật thông tin. Giao hàng toàn quốc.
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-gradient-to-br from-[#F5FAFF] via-white to-[#FFF5F6] text-slate-600 py-12 border-t border-blue-100 text-sm">
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-3 gap-8">
-
-            <div class="space-y-4">
-                <div class="flex items-center gap-2">
-                    <div class="bg-gradient-to-r from-[#2563EB] to-[#F43F5E] text-white px-2 py-1 rounded font-black text-xl">ABRAHAM</div>
-                    <span class="font-bold text-lg text-[#2563EB]">BIKE</span>
-                </div>
-                <p class="text-xs text-slate-600 leading-relaxed">
-                    Sản phẩm thuộc CÔNG TY TNHH KH KT VẠN THỊNH. Thương hiệu xe đạp uy tín hàng đầu Việt Nam.
-                </p>
-            </div>
-
-            <div class="space-y-2">
-                <h4 class="text-[#2563EB] font-bold text-base mb-3">Thông Tin Liên Hệ</h4>
-                <p><i class="fa-solid fa-phone text-sky-400 mr-2"></i> Hotline: <a href="tel:+84901184998" class="font-bold text-[#2563EB] hover:text-[#F43F5E] transition">090 118 49 98</a></p>
-                <p><i class="fa-solid fa-globe text-brand-blue mr-2"></i> Website: <a href="https://abraham.vn" class="hover:text-[#F43F5E] transition">abraham.vn</a></p>
-                <p><i class="fa-solid fa-envelope text-slate-400 mr-2"></i> Email: <a href="mailto:cskh@abraham.vn" class="hover:text-[#F43F5E] transition">cskh@abraham.vn</a></p>
-            </div>
-
-            <div class="space-y-2">
-                <h4 class="text-[#2563EB] font-bold text-base mb-3">Chính Sách &amp; Hỗ Trợ</h4>
-                <ul class="space-y-1 text-xs">
-                    <li><a href="#" class="hover:text-[#F43F5E] transition">Thể lệ chương trình vòng quay may mắn</a></li>
-                    <li><a href="#" class="hover:text-[#F43F5E] transition">Chính sách bảo hành khung sườn 5 năm</a></li>
-                    <li><a href="#" class="hover:text-[#F43F5E] transition">Chính sách vận chuyển &amp; giao nhận</a></li>
-                    <li><a href="#" class="hover:text-[#F43F5E] transition">Hướng dẫn chọn kích thước xe</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-blue-100 text-center text-xs text-slate-500">
-            © 2026 Abraham Bike - Bản quyền thuộc Công ty TNHH KH KT Vạn Thịnh. Tất cả các quyền được bảo lưu.
-        </div>
-    </footer>
-
-  <!-- Logic vòng quay may mắn nằm ở 2 file riêng:
-       1) js/spin-gate.js  -> form thu thập thông tin + cấp lượt quay
-       2) js/wheel.js      -> dựng bánh xe & xử lý quay
-       Thứ tự nạp bắt buộc: spin-gate.js TRƯỚC wheel.js -->
+<!-- Thứ tự nạp bắt buộc:
+     supabase-config.js -> ticker.js / spin-gate.js -> wheel.js -->
 <script src="js/supabase-config.js"></script>
+<script src="js/ticker.js"></script>
 <script src="js/spin-gate.js"></script>
 <script src="js/wheel.js"></script>
-
 
 </body>
 </html>

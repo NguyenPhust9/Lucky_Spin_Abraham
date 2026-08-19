@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Abraham Bike — Quản trị vòng quay</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+/* Trang admin dùng CSS riêng, không phụ thuộc Tailwind build */
+:root{
+    --blue:#2563EB; --blue-dark:#1D4ED8; --blue-soft:#EFF6FF; --blue-line:#DBEAFE;
+    --coral:#F43F5E; --amber:#FBBF24; --mint:#34D399;
+    --ink:#0F172A; --muted:#64748B; --line:#E2E8F0; --bg:#F6F9FE;
+}
+*{box-sizing:border-box}
+body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:Montserrat,system-ui,Arial,sans-serif;font-size:14px;
+    -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{margin:0}
+button{font-family:inherit;cursor:pointer}
+input,select,textarea{font-family:inherit}
+
+/* ---------- ĐĂNG NHẬP ---------- */
+#login-screen{
+    position:fixed;inset:0;display:flex;align-items:center;justify-content:center;
+    padding:16px;background:linear-gradient(135deg,#EFF6FF,#fff 55%,#FFF1F2);
+}
+.login-card{
+    width:100%;max-width:23rem;background:#fff;border:4px solid var(--blue-line);
+    border-radius:24px;padding:32px 26px;box-shadow:0 30px 60px -18px rgba(6,28,68,.28);
+}
+.login-logo{
+    display:inline-block;background:var(--blue);color:#fff;font-weight:900;
+    padding:5px 10px;border-radius:8px;letter-spacing:.06em;
+}
+.login-head{text-align:center;margin-bottom:20px}
+.login-head h1{font-size:19px;font-weight:900;color:var(--blue);margin-top:12px}
+.login-head p{margin:4px 0 0;font-size:12px;color:var(--muted)}
+
+.field{margin-bottom:12px}
+label.lbl{
+    display:block;margin-bottom:5px;font-size:11px;font-weight:800;
+    color:#334155;text-transform:uppercase;letter-spacing:.04em;
+}
+.inp{
+    width:100%;padding:11px 13px;font-size:14px;color:var(--ink);
+    background:#F1F5F9;border:1px solid var(--line);border-radius:11px;outline:none;
+    transition:border-color .15s,box-shadow .15s;
+}
+.inp:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.2)}
+.inp:disabled{opacity:.6}
+
+.btn{
+    border:0;border-radius:11px;padding:11px 16px;font-weight:800;font-size:13px;
+    color:#fff;background:var(--blue);transition:filter .15s,transform .15s;
+}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.6;cursor:wait}
+.btn-block{width:100%;margin-top:6px;padding:13px;text-transform:uppercase;letter-spacing:.07em;
+    background:linear-gradient(90deg,var(--blue),var(--coral))}
+.btn-sm{padding:7px 12px;font-size:12px;border-radius:9px}
+.btn-ghost{background:#fff;color:var(--blue);border:1px solid var(--blue-line)}
+.btn-ghost:hover{background:var(--blue-soft)}
+.btn-mint{background:var(--mint)}
+.btn-danger{background:var(--coral)}
+
+.alert{
+    display:none;margin-top:12px;padding:10px 12px;border-radius:10px;
+    font-size:12px;font-weight:600;line-height:1.5;
+}
+.alert.show{display:block}
+.alert-err{background:#FFF1F2;border:1px solid #FECDD3;color:#BE123C}
+.alert-ok{background:#ECFDF5;border:1px solid #A7F3D0;color:#065F46}
+
+/* ---------- KHUNG APP ---------- */
+#app{display:none}
+.topbar{
+    position:sticky;top:0;z-index:40;background:#fff;border-bottom:1px solid var(--line);
+    padding:0 20px;height:62px;display:flex;align-items:center;gap:14px;
+}
+.topbar .brand{display:flex;align-items:center;gap:8px;font-weight:900}
+.topbar .brand .tag{background:var(--blue);color:#fff;padding:4px 9px;border-radius:7px;font-size:13px}
+.topbar .brand small{color:var(--muted);font-weight:700;font-size:11px;
+    text-transform:uppercase;letter-spacing:.1em}
+.topbar .spacer{flex:1}
+.who{font-size:12px;color:var(--muted);font-weight:600}
+
+.tabs{display:flex;gap:4px;padding:14px 20px 0;flex-wrap:wrap}
+.tab{
+    border:0;background:transparent;color:var(--muted);font-weight:800;font-size:13px;
+    padding:9px 15px;border-radius:10px 10px 0 0;
+}
+.tab:hover{background:#EEF4FD;color:var(--blue)}
+.tab.active{background:#fff;color:var(--blue);box-shadow:0 -2px 0 var(--blue) inset}
+
+.panel{display:none;padding:18px 20px 60px}
+.panel.active{display:block}
+
+.card{
+    background:#fff;border:1px solid var(--line);border-radius:16px;
+    padding:18px;margin-bottom:16px;
+}
+.card h2{font-size:15px;font-weight:900;color:var(--blue);margin-bottom:4px}
+.card .hint{font-size:12px;color:var(--muted);margin:0 0 14px}
+
+/* ---------- THẺ SỐ LIỆU ---------- */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px}
+.stat .k{font-size:11px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.stat .v{font-size:26px;font-weight:900;color:var(--blue);margin-top:4px;line-height:1.1}
+.stat.coral .v{color:var(--coral)}
+.stat.mint .v{color:#059669}
+
+/* ---------- BẢNG ---------- */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+thead th{
+    background:#F8FAFC;text-align:left;padding:11px 12px;font-size:11px;font-weight:800;
+    color:var(--muted);text-transform:uppercase;letter-spacing:.05em;
+    border-bottom:1px solid var(--line);white-space:nowrap;
+}
+tbody td{padding:10px 12px;border-bottom:1px solid #F1F5F9;vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#FAFCFF}
+tbody tr.is-off{opacity:.55}
+td.num,th.num{text-align:right}
+.mono{font-variant-numeric:tabular-nums}
+
+.cell-inp{
+    width:82px;padding:6px 8px;font-size:13px;text-align:right;
+    border:1px solid var(--line);border-radius:8px;background:#F8FAFC;outline:none;
+}
+.cell-inp:focus{border-color:var(--blue);background:#fff}
+.cell-inp.wide{width:100%;text-align:left;min-width:150px}
+
+.pill{
+    display:inline-block;padding:3px 9px;border-radius:999px;
+    font-size:11px;font-weight:800;white-space:nowrap;
+}
+.pill-on{background:#ECFDF5;color:#047857}
+.pill-off{background:#F1F5F9;color:#64748B}
+.pill-wait{background:#FFF7ED;color:#C2410C}
+.pill-tier{background:var(--blue-soft);color:var(--blue-dark)}
+
+.swatch{display:inline-block;width:14px;height:14px;border-radius:4px;
+    border:1px solid rgba(0,0,0,.12);vertical-align:-2px;margin-right:6px}
+
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.toolbar .grow{flex:1;min-width:180px}
+.toolbar-end{margin-top:16px;margin-bottom:0;justify-content:flex-end}
+.check{display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.search{
+    width:100%;padding:9px 12px;font-size:13px;background:#fff;
+    border:1px solid var(--line);border-radius:10px;outline:none;
+}
+.search:focus{border-color:var(--blue)}
+
+.empty{padding:28px;text-align:center;color:var(--muted);font-size:13px}
+.loading{padding:28px;text-align:center;color:var(--blue);font-size:13px;font-weight:700}
+
+.bar{height:7px;background:#F1F5F9;border-radius:99px;overflow:hidden;min-width:90px}
+.bar span{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--coral))}
+
+.footnote{font-size:12px;color:var(--muted);line-height:1.6}
+
+@media (max-width:640px){
+    .topbar{padding:0 12px}
+    .panel{padding:14px 12px 50px}
+    .tabs{padding:12px 12px 0}
+    .toolbar-end{justify-content:stretch}
+    .toolbar-end .btn{flex:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== ĐĂNG NHẬP ==================== -->
+<div id="login-screen">
+    <div class="login-card">
+        <div class="login-head">
+            <span class="login-logo">ABRAHAM</span>
+            <h1>Quản trị vòng quay</h1>
+            <p>Đăng nhập bằng tài khoản quản trị</p>
+        </div>
+
+        <form id="login-form" novalidate>
+            <div class="field">
+                <label class="lbl" for="lg-email">Email</label>
+                <input class="inp" id="lg-email" type="email" autocomplete="username" required
+                       placeholder="admin@abraham.vn">
+            </div>
+            <div class="field">
+                <label class="lbl" for="lg-pass">Mật khẩu</label>
+                <input class="inp" id="lg-pass" type="password" autocomplete="current-password" required
+                       placeholder="••••••••">
+            </div>
+            <button type="submit" class="btn btn-block" id="lg-btn">Đăng nhập</button>
+            <div class="alert alert-err" id="lg-error"></div>
+        </form>
+    </div>
+</div>
+
+<!-- ==================== ỨNG DỤNG ==================== -->
+<div id="app">
+
+    <div class="topbar">
+        <div class="brand">
+            <span class="tag">ABRAHAM</span>
+            <small>Quản trị vòng quay</small>
+        </div>
+        <div class="spacer"></div>
+        <span class="who" id="who"></span>
+        <button class="btn btn-sm btn-ghost" id="btn-refresh">
+            <i class="fa-solid fa-rotate"></i> Tải lại
+        </button>
+        <button class="btn btn-sm btn-danger" id="btn-logout">Đăng xuất</button>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" data-tab="overview">Tổng quan</button>
+        <button class="tab" data-tab="prizes">Giải thưởng</button>
+        <button class="tab" data-tab="winners">Khách trúng</button>
+        <button class="tab" data-tab="leads">Danh sách khách</button>
+    </div>
+
+    <!-- ---------- TỔNG QUAN ---------- -->
+    <div class="panel active" id="panel-overview">
+        <div class="stats" id="stats"></div>
+
+        <div class="card">
+            <h2>Tồn kho phần quà</h2>
+            <p class="hint">Giải hết hàng sẽ tự bị loại khỏi vòng bốc, khách không thể trúng món không còn hàng.</p>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tầng giải</th>
+                            <th>Phần quà</th>
+                            <th class="num">Tỷ lệ</th>
+                            <th class="num">Đã trao</th>
+                            <th class="num">Tổng</th>
+                            <th class="num">Còn lại</th>
+                            <th>Mức tiêu thụ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stock-body">
+                        <tr><td colspan="7" class="loading">Đang tải...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------- GIẢI THƯỞNG ---------- -->
+    <div class="panel" id="panel-prizes">
+        <div class="card">
+            <h2>Cấu hình giải thưởng</h2>
+            <p class="hint">
+                Giải có <strong>Tỷ lệ cố định</strong> luôn giữ đúng phần trăm đó, kể cả khi tầng khác hết hàng.
+                Giải để trống ô này sẽ bốc theo <strong>Trọng số</strong> trong phần còn lại.
+            </p>
+
+            <div class="toolbar">
+                <label class="footnote check">
+                    <input type="checkbox" id="show-inactive"> Hiện cả giải đã tắt
+                </label>
+                <span class="footnote" id="rate-sum"></span>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Mã</th>
+                            <th>Tầng giải</th>
+                            <th>Nhãn phần quà</th>
+                            <th class="num">Tỷ lệ cố định %</th>
+                            <th class="num">Trọng số</th>
+                            <th class="num">Tổng SL</th>
+                            <th class="num">Đã dùng</th>
+                            <th class="num">Quota tuần</th>
+                            <th>Bật</th>
+                        </tr>
+                    </thead>
+                    <tbody id="prizes-body">
+                        <tr><td colspan="9" class="loading">Đang tải...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="alert" id="prize-msg"></div>
+
+            <div class="toolbar toolbar-end">
+                <button class="btn btn-ghost" id="btn-reload-prizes">Huỷ, tải lại</button>
+                <button class="btn btn-mint" id="btn-save-prizes">
+                    <i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------- KHÁCH TRÚNG ---------- -->
+    <div class="panel" id="panel-winners">
+        <div class="card">
+            <h2>Khách trúng thưởng</h2>
+            <p class="hint">Tick vào ô Đã giao khi phần quà đã đến tay khách.</p>
+
+            <div class="toolbar">
+                <div class="grow">
+                    <input class="search" id="win-search" placeholder="Tìm theo tên, số điện thoại, phần quà...">
+                </div>
+                <select class="inp" id="win-filter" style="width:auto">
+                    <option value="all">Tất cả</option>
+                    <option value="pending">Chưa giao</option>
+                    <option value="done">Đã giao</option>
+                </select>
+                <button class="btn btn-sm btn-ghost" id="btn-export-winners">
+                    <i class="fa-solid fa-file-csv"></i> Xuất CSV
+                </button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Khách hàng</th>
+                            <th>Điện thoại</th>
+                            <th>Tầng</th>
+                            <th>Phần quà</th>
+                            <th>Địa chỉ nhận</th>
+                            <th>Đã giao</th>
+                        </tr>
+                    </thead>
+                    <tbody id="winners-body">
+                        <tr><td colspan="7" class="loading">Đang tải...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------- LEADS ---------- -->
+    <div class="panel" id="panel-leads">
+        <div class="card">
+            <h2>Danh sách khách đăng ký</h2>
+            <p class="hint">Toàn bộ thông tin khách điền vào form, kể cả người chưa quay.</p>
+
+            <div class="toolbar">
+                <div class="grow">
+                    <input class="search" id="lead-search" placeholder="Tìm theo tên, số điện thoại, cửa hàng...">
+                </div>
+                <button class="btn btn-sm btn-ghost" id="btn-export-leads">
+                    <i class="fa-solid fa-file-csv"></i> Xuất CSV
+                </button>
+            </div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Thời gian</th>
+                            <th>Họ tên</th>
+                            <th>Điện thoại</th>
+                            <th>Cửa hàng</th>
+                            <th>Sản phẩm</th>
+                            <th>Địa chỉ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-body">
+                        <tr><td colspan="6" class="loading">Đang tải...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="js/supabase-config.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
