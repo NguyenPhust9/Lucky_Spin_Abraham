@@ -20,6 +20,9 @@
    Thứ tự nạp bắt buộc:
      supabase-config.js  ->  spin-gate.js  ->  wheel.js
 
+   Firebase Phone Auth được nạp trực tiếp trong file này qua CDN,
+   không cần tạo thêm firebase-otp.js.
+
    GHI CHÚ: modal dùng CSS riêng nhúng trong file, KHÔNG dùng
    Tailwind. Tailwind chỉ sinh class nó quét thấy trong *.html;
    class nằm trong chuỗi JS sẽ không có trong output.css.
@@ -41,6 +44,86 @@
     var savedScrollY = 0;
     var isLocked = false;
     var submitting = false;
+    var otpState = {
+        sent: false,
+        verified: false,
+        phone: null,
+        firebasePhone: null,
+        idToken: null
+    };
+
+    /* --------------------------------------------------------
+       FIREBASE PHONE AUTH
+       Web app: abraham-8bda9
+       SDK được tải động từ CDN chính thức của Firebase.
+    --------------------------------------------------------- */
+    var FIREBASE_CONFIG = {
+        apiKey: "AIzaSyBtmw3y63Y2nEohJtjFudn8g2YDuauyJ8I",
+        authDomain: "abraham-8bda9.firebaseapp.com",
+        projectId: "abraham-8bda9",
+        storageBucket: "abraham-8bda9.firebasestorage.app",
+        messagingSenderId: "639192313351",
+        appId: "1:639192313351:web:a6d02b245949a2589c44a2"
+    };
+
+    var FIREBASE_SDK_VERSION = '12.17.0';
+    var firebaseSdkPromise = null;
+    var firebaseAuth = null;
+    var firebaseAuthModule = null;
+    var firebaseVerifier = null;
+    var firebaseConfirmationResult = null;
+
+    function loadFirebaseAuth() {
+        if (firebaseSdkPromise) return firebaseSdkPromise;
+
+        var base = 'https://www.gstatic.com/firebasejs/' + FIREBASE_SDK_VERSION + '/';
+
+        firebaseSdkPromise = Promise.all([
+            import(base + 'firebase-app.js'),
+            import(base + 'firebase-auth.js')
+        ]).then(function (mods) {
+            var appModule = mods[0];
+            var authModule = mods[1];
+
+            var app = appModule.getApps().length
+                ? appModule.getApp()
+                : appModule.initializeApp(FIREBASE_CONFIG);
+
+            firebaseAuthModule = authModule;
+            firebaseAuth = authModule.getAuth(app);
+            firebaseAuth.languageCode = 'vi';
+
+            return {
+                auth: firebaseAuth,
+                authModule: authModule
+            };
+        });
+
+        return firebaseSdkPromise;
+    }
+
+    function formatVietnamPhone(phone) {
+        var digits = String(phone || '').replace(/\D/g, '');
+
+        if (/^0[0-9]{9}$/.test(digits)) {
+            return '+84' + digits.substring(1);
+        }
+
+        if (/^84[0-9]{9}$/.test(digits)) {
+            return '+' + digits;
+        }
+
+        throw new Error('INVALID_VN_PHONE');
+    }
+
+    function clearFirebaseVerifier() {
+        if (firebaseVerifier) {
+            try { firebaseVerifier.clear(); } catch (e) { /* bỏ qua */ }
+        }
+
+        firebaseVerifier = null;
+        firebaseConfirmationResult = null;
+    }
 
     var STORES = [
         'Website abraham.vn',
@@ -420,6 +503,7 @@
         } catch (e) { /* bỏ qua */ }
         state.ticketCode = null;
         state.lead = null;
+        if (modalEl) resetOtp();
         console.log('[AbrahamSpinGate] Đã xoá trạng thái tham gia trên trình duyệt này.');
     }
 
@@ -492,6 +576,33 @@
                     '</div>' +
 
                     '<div class="sg-field">' +
+                        '<button type="button" id="sg-send-otp" class="sg-submit" ' +
+                            'style="margin-top:0;background:#2563EB;">' +
+                            '<i class="fa-solid fa-paper-plane"></i> ' +
+                            '<span>Gửi mã OTP</span>' +
+                        '</button>' +
+                        '<p class="sg-error" data-gate-error="otp-send"></p>' +
+                    '</div>' +
+
+                    '<div class="sg-field" id="sg-otp-area" style="display:none;">' +
+                        '<label class="sg-label" for="sg-otp">Mã OTP</label>' +
+                        '<input class="sg-input" id="sg-otp" type="text" ' +
+                            'inputmode="numeric" maxlength="6" autocomplete="one-time-code" ' +
+                            'placeholder="Nhập mã OTP 6 số">' +
+                        '<button type="button" id="sg-verify-otp" class="sg-submit" ' +
+                            'style="margin-top:8px;background:#16A34A;">' +
+                            '<i class="fa-solid fa-shield-halved"></i> ' +
+                            '<span>Xác nhận OTP</span>' +
+                        '</button>' +
+                        '<p class="sg-error" data-gate-error="otp"></p>' +
+                        '<p id="sg-otp-success" ' +
+                            'style="display:none;margin:8px 0 0;color:#16A34A;' +
+                            'font-size:12px;font-weight:800;">' +
+                            '✓ Số điện thoại đã được xác minh' +
+                        '</p>' +
+                    '</div>' +
+
+                    '<div class="sg-field">' +
                         '<label class="sg-label" for="sg-address">Địa chỉ nhận thưởng</label>' +
                         '<input class="sg-input" id="sg-address" name="address" type="text" required ' +
                             'placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành">' +
@@ -530,6 +641,22 @@
 
         overlay.querySelector('[data-gate-close]').addEventListener('click', function () {
             if (!submitting) closeForm();
+        });
+
+        overlay.querySelector('#sg-send-otp').addEventListener('click', function () {
+            sendOtp();
+        });
+
+        overlay.querySelector('#sg-verify-otp').addEventListener('click', function () {
+            verifyOtp();
+        });
+
+        overlay.querySelector('#sg-phone').addEventListener('input', function () {
+            var currentPhone = this.value.trim();
+
+            if (otpState.phone && currentPhone !== otpState.phone) {
+                resetOtp();
+            }
         });
 
         overlay.querySelector('#spin-gate-form').addEventListener('submit', function (e) {
@@ -664,6 +791,226 @@
         if (btn) btn.disabled = on;
         if (txt) txt.textContent = on ? 'Đang gửi...' : 'Xác nhận & nhận lượt quay';
     }
+    function resetOtp() {
+        otpState.sent = false;
+        otpState.verified = false;
+        otpState.phone = null;
+        otpState.firebasePhone = null;
+        otpState.idToken = null;
+
+        clearFirebaseVerifier();
+
+        if (!modalEl) return;
+
+        var otpArea = modalEl.querySelector('#sg-otp-area');
+        var success = modalEl.querySelector('#sg-otp-success');
+        var otpInput = modalEl.querySelector('#sg-otp');
+        var phoneInput = modalEl.querySelector('#sg-phone');
+        var sendBtn = modalEl.querySelector('#sg-send-otp');
+        var verifyBtn = modalEl.querySelector('#sg-verify-otp');
+
+        if (otpArea) otpArea.style.display = 'none';
+        if (success) success.style.display = 'none';
+        if (otpInput) otpInput.value = '';
+
+        if (phoneInput) {
+            phoneInput.readOnly = false;
+        }
+
+        if (sendBtn) {
+            sendBtn.disabled = false;
+            var sendText = sendBtn.querySelector('span');
+            if (sendText) sendText.textContent = 'Gửi mã OTP';
+        }
+
+        if (verifyBtn) {
+            verifyBtn.disabled = false;
+            var verifyText = verifyBtn.querySelector('span');
+            if (verifyText) verifyText.textContent = 'Xác nhận OTP';
+        }
+
+        showFieldError('otp-send', false);
+        showFieldError('otp', false);
+    }
+
+    async function sendOtp() {
+        var phoneInput = modalEl.querySelector('#sg-phone');
+        var phone = phoneInput.value.trim();
+
+        if (!/^0[0-9]{9}$/.test(phone)) {
+            showFieldError(
+                'phone',
+                true,
+                'Số điện thoại cần 10 chữ số và bắt đầu bằng 0.'
+            );
+            return;
+        }
+
+        showFieldError('phone', false);
+        showFieldError('otp-send', false);
+        showFieldError('otp', false);
+
+        var btn = modalEl.querySelector('#sg-send-otp');
+        var btnText = btn.querySelector('span');
+
+        btn.disabled = true;
+        if (btnText) btnText.textContent = 'Đang gửi OTP...';
+
+        try {
+            var sdk = await loadFirebaseAuth();
+
+            clearFirebaseVerifier();
+
+            firebaseVerifier = new sdk.authModule.RecaptchaVerifier(
+                sdk.auth,
+                'sg-send-otp',
+                {
+                    size: 'invisible',
+                    'expired-callback': function () {
+                        otpState.sent = false;
+                        showFieldError(
+                            'otp-send',
+                            true,
+                            'Phiên xác minh đã hết hạn. Vui lòng gửi lại OTP.'
+                        );
+                    }
+                }
+            );
+
+            var firebasePhone = formatVietnamPhone(phone);
+
+            firebaseConfirmationResult =
+                await sdk.authModule.signInWithPhoneNumber(
+                    sdk.auth,
+                    firebasePhone,
+                    firebaseVerifier
+                );
+
+            otpState.sent = true;
+            otpState.verified = false;
+            otpState.phone = phone;
+            otpState.firebasePhone = firebasePhone;
+            otpState.idToken = null;
+
+            var otpArea = modalEl.querySelector('#sg-otp-area');
+            if (otpArea) otpArea.style.display = '';
+
+            if (btnText) btnText.textContent = 'Gửi lại OTP';
+
+            var otpInput = modalEl.querySelector('#sg-otp');
+            if (otpInput) {
+                window.setTimeout(function () {
+                    try { otpInput.focus({ preventScroll: true }); }
+                    catch (e) { otpInput.focus(); }
+                }, 80);
+            }
+
+        } catch (err) {
+            console.error('[AbrahamSpinGate] Firebase send OTP:', err);
+
+            otpState.sent = false;
+            otpState.verified = false;
+            clearFirebaseVerifier();
+
+            var msg = 'Không gửi được OTP. Vui lòng thử lại.';
+
+            if (err && err.message === 'INVALID_VN_PHONE') {
+                msg = 'Số điện thoại không hợp lệ.';
+            } else if (err && err.code === 'auth/too-many-requests') {
+                msg = 'Bạn đã yêu cầu OTP quá nhiều lần. Vui lòng thử lại sau.';
+            } else if (err && err.code === 'auth/invalid-phone-number') {
+                msg = 'Số điện thoại không hợp lệ.';
+            } else if (err && err.code === 'auth/quota-exceeded') {
+                msg = 'Hạn mức SMS OTP của Firebase đã hết.';
+            } else if (err && err.code === 'auth/operation-not-allowed') {
+                msg = 'Phone Authentication chưa được bật trong Firebase.';
+            } else if (err && err.code === 'auth/captcha-check-failed') {
+                msg = 'reCAPTCHA không xác minh được. Hãy tải lại trang và thử lại.';
+            }
+
+            showFieldError('otp-send', true, msg);
+
+        } finally {
+            btn.disabled = false;
+
+            if (!otpState.sent && btnText) {
+                btnText.textContent = 'Gửi mã OTP';
+            }
+        }
+    }
+
+    async function verifyOtp() {
+        var codeInput = modalEl.querySelector('#sg-otp');
+        var code = codeInput ? codeInput.value.trim() : '';
+
+        if (!/^[0-9]{6}$/.test(code)) {
+            showFieldError('otp', true, 'Mã OTP phải gồm 6 chữ số.');
+            return;
+        }
+
+        if (!otpState.sent || !firebaseConfirmationResult) {
+            showFieldError('otp', true, 'Bạn cần gửi OTP trước.');
+            return;
+        }
+
+        var btn = modalEl.querySelector('#sg-verify-otp');
+        var btnText = btn.querySelector('span');
+
+        btn.disabled = true;
+        if (btnText) btnText.textContent = 'Đang xác minh...';
+
+        try {
+            var result = await firebaseConfirmationResult.confirm(code);
+
+            otpState.verified = true;
+            otpState.firebasePhone = result.user.phoneNumber || otpState.firebasePhone;
+
+            try {
+                otpState.idToken = await result.user.getIdToken();
+            } catch (tokenErr) {
+                console.warn('[AbrahamSpinGate] Không lấy được Firebase ID token:', tokenErr);
+                otpState.idToken = null;
+            }
+
+            showFieldError('otp', false);
+            showFieldError('otp-send', false);
+
+            var success = modalEl.querySelector('#sg-otp-success');
+            if (success) success.style.display = '';
+
+            var phoneInput = modalEl.querySelector('#sg-phone');
+            if (phoneInput) phoneInput.readOnly = true;
+
+            var sendBtn = modalEl.querySelector('#sg-send-otp');
+            if (sendBtn) {
+                sendBtn.disabled = true;
+                var sendText = sendBtn.querySelector('span');
+                if (sendText) sendText.textContent = 'OTP đã gửi';
+            }
+
+            if (btnText) btnText.textContent = 'Đã xác minh';
+            btn.disabled = true;
+
+        } catch (err) {
+            console.error('[AbrahamSpinGate] Firebase verify OTP:', err);
+
+            otpState.verified = false;
+            otpState.idToken = null;
+
+            var msg = 'Mã OTP không đúng hoặc đã hết hạn.';
+
+            if (err && err.code === 'auth/invalid-verification-code') {
+                msg = 'Mã OTP không đúng.';
+            } else if (err && err.code === 'auth/code-expired') {
+                msg = 'Mã OTP đã hết hạn. Vui lòng gửi lại mã.';
+            }
+
+            showFieldError('otp', true, msg);
+
+            btn.disabled = false;
+            if (btnText) btnText.textContent = 'Xác nhận OTP';
+        }
+    }
 
     /* --------------------------------------------------------
        Submit: gửi lên Supabase, nhận ticket_code
@@ -690,6 +1037,15 @@
         if (!allFilled) {
             showFieldError('general', true,
                 'Còn mục chưa điền hoặc chưa đúng. Kiểm tra lại giúp mình nhé.');
+            return;
+        }
+
+        if (!otpState.verified || otpState.phone !== data.phone) {
+            showFieldError(
+                'general',
+                true,
+                'Vui lòng xác minh số điện thoại bằng OTP trước khi nhận lượt quay.'
+            );
             return;
         }
 
@@ -756,6 +1112,7 @@
 
         closeForm();
         form.reset();
+        resetOtp();
 
         var cb = pendingCallback;
         pendingCallback = null;
@@ -771,6 +1128,7 @@
         buildModal();
         pendingCallback = onGranted;
 
+        resetOtp();
         showFieldError('general', false);
         showFieldError('phone', false);
 
@@ -834,6 +1192,9 @@
         markCompleted: markCompleted,
         hasCompleted: hasCompleted,
         getCompleted: getCompleted,
+        isPhoneVerified: function () { return otpState.verified; },
+        getVerifiedPhone: function () { return otpState.firebasePhone; },
+        getFirebaseIdToken: function () { return otpState.idToken; },
         reset: reset
     };
 
