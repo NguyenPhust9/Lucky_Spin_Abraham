@@ -138,13 +138,9 @@ module.exports = async function handler(req, res) {
     }
 
     // 2) Lấy profile Zalo: id, name, picture
+    // Zalo SDK chính thức truyền User Access Token bằng header "access_token".
     const profileUrl = new URL(
       "https://graph.zalo.me/v2.0/me"
-    );
-
-    profileUrl.searchParams.set(
-      "accesstoken",
-      tokenData.access_token
     );
 
     profileUrl.searchParams.set(
@@ -153,7 +149,13 @@ module.exports = async function handler(req, res) {
     );
 
     const profileResponse = await fetch(
-      profileUrl.toString()
+      profileUrl.toString(),
+      {
+        method: "GET",
+        headers: {
+          "access_token": tokenData.access_token
+        }
+      }
     );
 
     const profile = await profileResponse.json();
