@@ -137,7 +137,7 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    // 2) Lấy profile Zalo: id, name, picture
+    // 2) Chỉ lấy Zalo user ID. Không yêu cầu tên/avatar vì Vercel có IP ngoài Việt Nam.
     // Zalo SDK chính thức truyền User Access Token bằng header "access_token".
     const profileUrl = new URL(
       "https://graph.zalo.me/v2.0/me"
@@ -145,7 +145,7 @@ module.exports = async function handler(req, res) {
 
     profileUrl.searchParams.set(
       "fields",
-      "id,name,picture"
+      "id"
     );
 
     const profileResponse = await fetch(
