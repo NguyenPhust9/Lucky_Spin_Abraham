@@ -1,0 +1,21 @@
+/* tailwindcss */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    @keyframes pulse-glow {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 87, 34, 0.6); }
+        50% { transform: scale(1.03); box-shadow: 0 0 30px rgba(255, 87, 34, 0.9); }
+    }
+
+    .btn-pulse {
+        animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .btn-pulse {
+            animation: none;
+        }
+    }
+}

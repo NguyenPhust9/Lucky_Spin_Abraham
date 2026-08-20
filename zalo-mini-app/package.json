@@ -1,0 +1,16 @@
+{
+  "name": "abraham-zalo-phone-verify",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "zmp-sdk": "latest"
+  },
+  "devDependencies": {
+    "vite": "^2.9.16"
+  }
+}

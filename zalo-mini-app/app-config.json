@@ -1,0 +1,20 @@
+{
+  "app": {
+    "title": "Abraham Bike Lucky Spin",
+    "headerTitle": "Abraham Bike Lucky Spin",
+    "headerColor": "#1843EF",
+    "textColor": "white",
+    "leftButton": "back",
+    "statusBar": "normal",
+    "actionBarHidden": false,
+    "hideAndroidBottomNavigationBar": false,
+    "hideIOSSafeAreaBottom": false
+  },
+"listCSS": [
+  "assets/index.7f8954f5.css"
+],
+"listSyncJS": [
+  "assets/index.7def1930.module.js"
+],
+"listAsyncJS": []
+}
