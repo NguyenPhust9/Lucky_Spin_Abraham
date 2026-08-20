@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx tailwindcss *)",
+      "Bash(python -c ' *)",
+      "Bash(./node_modules/.bin/tailwindcss -i ./input.css -o ./output.css --minify)",
+      "Bash(BROWSERSLIST_IGNORE_OLD_DATA=1 ./node_modules/.bin/tailwindcss -i ./input.css -o ./output.css --minify)"
+    ]
+  }
+}

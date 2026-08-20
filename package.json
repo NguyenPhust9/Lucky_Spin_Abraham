@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "description": "Landing page Abraham Bike - Ưu đãi hè 2026",
   "main": "index.js",
-"scripts": {
-  "build": "set BROWSERSLIST_IGNORE_OLD_DATA=1&& tailwindcss -i ./input.css -o ./output.css --minify",
-  "watch": "set BROWSERSLIST_IGNORE_OLD_DATA=1&& tailwindcss -i ./input.css -o ./output.css --watch",
-  "serve": "http-server -p %PORT% -c-1 -o /index.html",
-  "dev": "run-p watch serve",
-  "vercel-build": "BROWSERSLIST_IGNORE_OLD_DATA=1 tailwindcss -i ./input.css -o ./output.css --minify"
-},
+  "scripts": {
+    "build": "set BROWSERSLIST_IGNORE_OLD_DATA=1&& tailwindcss -i ./input.css -o ./output.css --minify",
+    "watch": "set BROWSERSLIST_IGNORE_OLD_DATA=1&& tailwindcss -i ./input.css -o ./output.css --watch",
+    "serve": "http-server -p 8080 -c-1 -o /index.html",
+    "dev": "run-p watch serve",
+    "vercel-build": "BROWSERSLIST_IGNORE_OLD_DATA=1 tailwindcss -i ./input.css -o ./output.css --minify"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
