@@ -28,10 +28,9 @@
    class nằm trong chuỗi JS sẽ không có trong output.css.
 
    GHI CHÚ (mới): ô "Cửa hàng đã mua" giờ có gợi ý (datalist)
-   lấy qua RPC abraham_get_dealers (window.AbrahamAPI.rpc, dùng
-   anon key, giống cách gọi các RPC khác trong file này). Khách
-   vẫn gõ tự do được nếu không tìm thấy cửa hàng của mình, và
-   luôn có lựa chọn "Không nhớ / Khác".
+   lấy từ /api/dealers (đọc bảng abraham_dealers qua service role
+   key trên Vercel). Khách vẫn gõ tự do được nếu không tìm thấy
+   cửa hàng của mình, và luôn có lựa chọn "Không nhớ / Khác".
 ============================================================ */
 (function () {
 
@@ -521,31 +520,24 @@
     /* --------------------------------------------------------
        Danh sách cửa hàng (gợi ý cho ô "Cửa hàng đã mua")
 
-       Lấy từ RPC abraham_get_dealers (bảng abraham_dealers, đọc
-       qua SECURITY DEFINER vì bảng đã bị revoke quyền với anon).
-       Ô input vẫn cho gõ tự do (list=datalist, không phải
-       <select>), nên nếu RPC lỗi/mất mạng, khách vẫn điền form
-       bình thường - chỉ là không có gợi ý.
+       Lấy từ /api/dealers (bảng abraham_dealers, đọc qua service
+       role key trên Vercel). Ô input vẫn cho gõ tự do (list=
+       datalist, không phải <select>), nên nếu API lỗi/mất mạng,
+       khách vẫn điền form bình thường - chỉ là không có gợi ý.
 
-       RPC trả về "label" đã ghép sẵn tên + huyện + khu vực
-       (vd "Thành Phát — Nhà Bè, Hồ Chí Minh"), KHÔNG chỉ trả tên
-       trơn, vì một số đại lý TRÙNG TÊN ở khu vực khác nhau
-       (VD: "Thành Phát" có ở cả Nhà Bè và Quận 7). Nếu chỉ hiện
-       tên trơn, khách sẽ không phân biệt được là cửa hàng nào.
-
-       Luôn có mục "Không nhớ / Khác" ở cuối, kể cả khi RPC lỗi.
+       Luôn có mục "Không nhớ / Khác" ở cuối, kể cả khi API lỗi.
     --------------------------------------------------------- */
-    function populateStoreDatalist(labels) {
+    function populateStoreDatalist(names) {
         if (!modalEl) return;
         var datalist = modalEl.querySelector('#sg-store-list');
         if (!datalist) return;
 
         datalist.innerHTML = '';
 
-        labels.forEach(function (label) {
-            if (!label || label === STORE_FALLBACK_OPTION) return;
+        names.forEach(function (name) {
+            if (!name || name === STORE_FALLBACK_OPTION) return;
             var opt = document.createElement('option');
-            opt.value = label;
+            opt.value = name;
             datalist.appendChild(opt);
         });
 
@@ -556,28 +548,22 @@
 
     async function loadStoreOptions() {
         if (storeOptionsLoaded || storeOptionsLoading) return;
-
-        if (!window.AbrahamAPI || typeof window.AbrahamAPI.rpc !== 'function') {
-            console.warn('[AbrahamSpinGate] Chưa nạp supabase-config.js, bỏ qua danh sách cửa hàng.');
-            populateStoreDatalist([]);
-            return;
-        }
-
         storeOptionsLoading = true;
 
         try {
-            var rows = await window.AbrahamAPI.rpc('abraham_get_dealers', {});
+            var data = await fetchJson('/api/dealers', {
+                method: 'GET',
+                credentials: 'same-origin',
+                cache: 'no-store'
+            });
 
-            var labels = (Array.isArray(rows) ? rows : [])
-                .map(function (row) { return row && row.label; })
-                .filter(function (label) { return typeof label === 'string' && label.trim() !== ''; });
-
-            populateStoreDatalist(labels);
+            var names = (data && data.dealers) || [];
+            populateStoreDatalist(names);
             storeOptionsLoaded = true;
 
         } catch (err) {
             console.warn('[AbrahamSpinGate] Không tải được danh sách cửa hàng:', err);
-            // Vẫn đảm bảo có "Không nhớ / Khác" dù RPC lỗi
+            // Vẫn đảm bảo có "Không nhớ / Khác" dù API lỗi
             populateStoreDatalist([]);
 
         } finally {

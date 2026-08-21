@@ -2,6 +2,16 @@ const { parseBody, sendJson } = require("../lib/http");
 const { normalizeVietnamPhone } = require("../lib/phone");
 const { selectOne, update, rpc } = require("../lib/supabase-server");
 
+/* ============================================================
+   CỜ BẬT/TẮT XÁC MINH ZALO (server-side)
+   - Chưa đặt biến môi trường, hoặc khác "true"  => TẮT xác minh:
+     nhận lead trực tiếp, không cần verificationId.
+     Chống trùng vẫn nằm ở RPC abraham_submit_lead (1 SĐT = 1 lượt).
+   - Khi Zalo duyệt app: đặt ZALO_VERIFY_ENABLED=true trên Vercel
+     VÀ đổi cờ cùng tên trong js/spin-gate.js thành true.
+============================================================ */
+const ZALO_VERIFY_ENABLED = process.env.ZALO_VERIFY_ENABLED === "true";
+
 function cleanText(value, max) {
   return String(value || "").trim().slice(0, max);
 }
@@ -24,7 +34,7 @@ module.exports = async function handler(req, res) {
     const store = cleanText(body.store, 120);
     const product = cleanText(body.product, 180);
 
-    if (!/^[0-9a-f-]{36}$/i.test(verificationId)) {
+    if (ZALO_VERIFY_ENABLED && !/^[0-9a-f-]{36}$/i.test(verificationId)) {
       return sendJson(res, 400, {
         ok: false,
         code: "invalid_verification_id",
@@ -48,52 +58,57 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    const row = await selectOne("abraham_phone_verifications", {
-      select: "id,expected_phone,verified_phone,status,expires_at,used_at",
-      id: "eq." + verificationId,
-      limit: "1"
-    });
-
-    if (!row) {
-      return sendJson(res, 404, {
-        ok: false,
-        code: "verification_not_found",
-        message: "Không tìm thấy phiên xác minh Zalo."
+    /* Toàn bộ bước kiểm tra phiên xác minh Zalo chỉ chạy khi bật cờ.
+       Khi tắt (Zalo chưa duyệt app), bỏ qua và đi thẳng tới RPC
+       abraham_submit_lead — database vẫn chặn 1 SĐT quay 2 lần. */
+    if (ZALO_VERIFY_ENABLED) {
+      const row = await selectOne("abraham_phone_verifications", {
+        select: "id,expected_phone,verified_phone,status,expires_at,used_at",
+        id: "eq." + verificationId,
+        limit: "1"
       });
-    }
 
-    if (row.used_at) {
-      return sendJson(res, 409, {
-        ok: false,
-        code: "verification_used",
-        message: "Phiên xác minh này đã được sử dụng."
-      });
-    }
+      if (!row) {
+        return sendJson(res, 404, {
+          ok: false,
+          code: "verification_not_found",
+          message: "Không tìm thấy phiên xác minh Zalo."
+        });
+      }
 
-    if (new Date(row.expires_at).getTime() <= Date.now()) {
-      await update(
-        "abraham_phone_verifications",
-        { id: "eq." + verificationId },
-        { status: "expired" }
-      );
+      if (row.used_at) {
+        return sendJson(res, 409, {
+          ok: false,
+          code: "verification_used",
+          message: "Phiên xác minh này đã được sử dụng."
+        });
+      }
 
-      return sendJson(res, 410, {
-        ok: false,
-        code: "verification_expired",
-        message: "Phiên xác minh Zalo đã hết hạn. Vui lòng xác minh lại."
-      });
-    }
+      if (new Date(row.expires_at).getTime() <= Date.now()) {
+        await update(
+          "abraham_phone_verifications",
+          { id: "eq." + verificationId },
+          { status: "expired" }
+        );
 
-    if (
-      row.status !== "verified" ||
-      row.expected_phone !== phone ||
-      row.verified_phone !== phone
-    ) {
-      return sendJson(res, 403, {
-        ok: false,
-        code: "phone_not_verified",
-        message: "Số điện thoại chưa được Zalo xác minh."
-      });
+        return sendJson(res, 410, {
+          ok: false,
+          code: "verification_expired",
+          message: "Phiên xác minh Zalo đã hết hạn. Vui lòng xác minh lại."
+        });
+      }
+
+      if (
+        row.status !== "verified" ||
+        row.expected_phone !== phone ||
+        row.verified_phone !== phone
+      ) {
+        return sendJson(res, 403, {
+          ok: false,
+          code: "phone_not_verified",
+          message: "Số điện thoại chưa được Zalo xác minh."
+        });
+      }
     }
 
     let rows;
@@ -122,22 +137,24 @@ module.exports = async function handler(req, res) {
       });
     }
 
-    await update(
-      "abraham_phone_verifications",
-      { id: "eq." + verificationId },
-      { used_at: new Date().toISOString(), form_data: {} }
-    );
-
-    // Đồng bộ cờ phone_verified trong bảng lead nếu bảng hiện tại có cột này.
-    // Không làm hỏng luồng quay nếu schema cũ chưa có cột.
-    try {
+    if (ZALO_VERIFY_ENABLED) {
       await update(
-        "abraham_leads",
-        { phone: "eq." + phone },
-        { phone_verified: true }
+        "abraham_phone_verifications",
+        { id: "eq." + verificationId },
+        { used_at: new Date().toISOString(), form_data: {} }
       );
-    } catch (syncError) {
-      console.warn("[SubmitVerifiedLead] Không cập nhật phone_verified:", syncError.code || syncError.message);
+
+      // Đồng bộ cờ phone_verified trong bảng lead nếu bảng hiện tại có cột này.
+      // Không làm hỏng luồng quay nếu schema cũ chưa có cột.
+      try {
+        await update(
+          "abraham_leads",
+          { phone: "eq." + phone },
+          { phone_verified: true }
+        );
+      } catch (syncError) {
+        console.warn("[SubmitVerifiedLead] Không cập nhật phone_verified:", syncError.code || syncError.message);
+      }
     }
 
     return sendJson(res, 200, {
